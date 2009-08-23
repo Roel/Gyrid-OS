@@ -1,0 +1,107 @@
+README.live-cd
+=============================================================================
+                     __  __
+                     \ \/ /___ __  __ ___  ___  ___
+                      \  // _ \\ \/ /,-_ |/ _ |/ -_)
+                       \/ \___/ \  / \___,\_  |\___|
+                               _/_/        _'_|
+                         { V o y a g e } - L i n u x
+                          < http://linux.voyage.hk >
+==============================================================================
+
+This README.live-cd provide information on how to install Voyage Linux from the 
+Live CD.
+
+==============================================================================
+Installing Voyage Linux to a hard disk from Live CD 
+==============================================================================
+
+Afte booting the Live CD, login as root (password: voyage) 
+
+1. Create distribution directory for installation
+	
+	# mkdir /tmp/root
+	# mount -o loop /live/image/live/filesystem.squashfs  /tmp/root
+	# cd /tmp/root
+	
+2. Make a mount point for installation disk
+
+	# mkdir /tmp/cf
+
+3. Format target disk device
+
+	# /usr/local/sbin/format-cf.sh /dev/hda    
+	
+This will create /dev/hda1 ext2 partition on /dev/hda disk device. 
+** Note that this operation is very dangerous since it will erase your disk! 
+   Make sure what you are doing and must do it right!
+   
+4. Start voyage.update installation script
+	
+	# /usr/local/sbin/voyage.update
+
+Following the instruction to select /tmp/root as distribution directory, and 
+/tmp/cf as mount point.  After the installation complete, simple reboot the
+board and Voyage will be started!
+
+There are some additional packages installed for PXE and NFS server.  After
+starting Voyage, you can safely remove them by:
+
+	# remountrw
+	# apt-get remove syslinux atftpd nfs-kernel-server \
+                     bzip2 sg3-utils minicom
+
+After all, remove the last line in /etc/dnsmasq.more.conf:
+	conf-file=/etc/dnsmasq.pxe.conf
+
+
+==============================================================================
+Installing to a Thumb-drive or Disk-constraint system (net4826)
+==============================================================================
+
+Follow the instruction to install Voyage Linux to a ext2 partition with root 
+squashfs filesystem like the Live CD format.  This is done by extlinux.  
+
+1. As usual, create mount point for the installation disk and format it 
+
+    # mkdir /tmp/cf
+    # /usr/local/sbin/format-cf.sh /dev/hda 
+
+This will create /dev/hda1 ext2 partition on /dev/hda disk device. 
+** Note that this operation is very dangerous since it will erase your disk! 
+   Make sure what you are doing and must do it right!
+   
+2. Mount the disk and copy CD content to disk device
+    
+    # mount /dev/hda1 /tmp/cf
+    # rsync -aHx /live/image/* /tmp/cf
+	
+3. Create extlinux.conf and install extlinux 
+    
+    # cp /tmp/cf/isolinux/isolinux.cfg /tmp/cf/isolinux/extlinux.conf
+    # extlinux -i /tmp/cf/isolinux 
+	
+4. Update master boot record for disk device
+    
+    # cat /usr/lib/syslinux/mbr.bin > /dev/hda
+	
+After all, reboot!  
+
+There are some notes when using this installation method:
+
+a. You will have a read-only squashfs root filesystem on a CF that consumes 
+   just 36MB and you cannot modify the rootfs.
+b. By default, all changes made to the system reside on tmpfs.  i.e. Changes 
+   are lost after reboot.  You can preserve the changes by creating another 
+   partition and labeled it as "casper-rw", or create a loopback file called 
+   "casper-rw" at / 
+   (see https://help.ubuntu.com/community/LiveCDPersistence: this is not tested 
+   and need more exploration)
+c. You will still be able to boot Live CD again after the installation.  But 
+   once the CD is booted, the installed disk with be mounted as rootfs and you 
+   are unable to umount it.  To get around this, you need to specify the 
+   following command at boot prompt (assume CD-ROM device is /dev/hdc):
+   
+   		linux bootfrom=/dev/hdc
+   		
+   		

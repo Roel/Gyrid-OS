@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo -n "Removing Locale in /usr/share/locale ... "
+find /usr/share/locale -name "*.mo" -exec rm '{}' ';'
+
+#apt-get  -q=2 -y install --force-yes localepurge
+#localepurge
+
+echo "Done"

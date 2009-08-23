@@ -1,0 +1,43 @@
+#!/bin/sh
+
+#################################
+
+exit
+
+echo -n "Installing /ro and /rw directories ... "
+mkdir /rw /ro ro/dev ro/etc ro/usr ro/var
+mv /root /ro/
+ln -sf /rw/root /root
+mv /tmp /ro/
+ln -sf /rw/tmp /tmp
+echo "Done"
+
+#################################
+# Remapping files to /rw
+#################################
+echo -n "Remapping files to /rw ... "
+#FILES="/etc/adjtime /etc/hostname /etc/issue /etc/issue.net /etc/resolv.conf /etc/mtab~"
+FILES="/etc/adjtime /etc/issue /etc/issue.net /etc/resolv.conf /etc/mtab~"
+FILES=$FILES" /var/lock /var/log /var/mail /var/run /var/spool /var/tmp /var/lib/dhcp /var/lib/logrotate"
+
+for FILE in $FILES
+do
+	echo "Making link for $FILE"
+
+	if [ ! -f $FILE ] ; then touch $FILE ; fi
+	if [ ! -d /ro`dirname $FILE` ] ; then mkdir -p /ro`dirname $FILE`; fi	
+	mv "$FILE" "/ro`dirname $FILE`"
+	ln -sf "/rw$FILE" "$FILE"
+done
+echo "Done"	
+
+#################################
+# Modifying /etc/network/ifstate
+#################################
+echo -n "Modifying /etc/network/run/ifstate ... "
+
+mkdir -p /ro/etc/network
+mv /etc/network/run /ro/etc/network
+ln -sf /rw/etc/network/run /etc/network/run
+
+echo "Done"

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+#apt-get install voyage-util
+export DEBIAN_FRONTEND=noninteractive 
+DEBIAN_FRONTEND=noninteractive apt-get -q=2 -y install --force-yes voyage-util
+
+update-rc.d -f ntpdate remove 
+update-rc.d -f rmnologin remove 
+
+update-rc.d voyage-util defaults 99
+
+#export DEBIAN_FRONTEND=noninteractive
+#DEBIAN_FRONTEND=noninteractive apt-get -q=2 --yes --force-yes install voyage-util
+
+cat /etc/motd.voyage >> /etc/motd.tail
+
+#################################
+# Modifying /etc/motd for build date
+#################################
+echo -n "Modifying /etc/motd for build date... "
+
+sed -i -e "/Version: 0.[0-9]/a (Build Date `date +%Y%m%d`)" /etc/motd.tail
+sed -i -e :a -e "/Version: 0.[0-9]$/N; s/\n/ /; ta" /etc/motd.tail
+
+echo "Done"
+
+touch voyage.1st
+
+wget http://de.voyage.hk/dists/experimental/archive.key -O - | apt-key add - 
+

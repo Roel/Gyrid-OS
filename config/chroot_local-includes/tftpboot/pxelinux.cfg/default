@@ -1,0 +1,37 @@
+say Voyage Linux PXE boot
+serial 0 9600
+console 0
+default 1
+
+label 0
+	KERNEL linux
+	APPEND initrd=initrd.img boot=live netboot=nfs nfsroot=192.168.1.200:/live/image live-getty noautologin all_generic_ide debug console=ttyS0,9600n8
+
+label 1
+	KERNEL linux
+	APPEND initrd=initrd.img boot=live netboot=nfs nfsroot=192.168.1.200:/live/image live-getty noautologin all_generic_ide console=ttyS0,9600n8
+
+label 2
+	KERNEL linux
+	APPEND initrd=initrd.img autoinstall=wrap boot=live netboot=nfs nfsroot=192.168.1.200:/live/image live-getty noautologin all_generic_ide console=ttyS0,38400n8
+
+label 3
+	KERNEL linux
+	APPEND initrd=initrd.img autoinstall=alix boot=live netboot=nfs nfsroot=192.168.1.200:/live/image live-getty noautologin all_generic_ide console=ttyS0,38400n8
+
+label 4
+	KERNEL linux
+	APPEND initrd=initrd.img autoinstall=4511 boot=live netboot=nfs nfsroot=192.168.1.200:/live/image live-getty noautologin all_generic_ide console=ttyS0,19200n8
+
+label 5
+	KERNEL linux
+	APPEND initrd=initrd.img autoinstall=5501 boot=live netboot=nfs nfsroot=192.168.1.200:/live/image live-getty noautologin all_generic_ide console=ttyS0,19200n8 
+
+label 6
+	KERNEL linux
+	APPEND initrd=initrd.img autoinstall=genericpc boot=live netboot=nfs nfsroot=192.168.1.200:/live/image live-getty noautologin all_generic_ide
+
+implicit 0
+display display.msg
+prompt 1
+timeout 50

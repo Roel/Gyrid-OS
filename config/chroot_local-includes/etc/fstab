@@ -1,0 +1,4 @@
+#/dev/hda1       /       ext2    defaults,noatime,rw     0       0
+proc            /proc   proc    defaults                0       0
+tmpfs 			/tmp 	tmpfs 	nosuid,nodev 			0 		0
+#tmpfs           /rw     tmpfs   defaults,size=32M        0       0

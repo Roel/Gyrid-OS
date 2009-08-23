@@ -1,0 +1,18 @@
+#Loopback interface
+auto lo
+iface lo inet loopback
+
+#eth0 static (default)
+auto eth0
+iface eth0 inet static
+    address 192.168.1.68
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+
+#eth0 dhcp
+#auto eth0
+#iface eth0 inet dhcp
+
+#eth1 dhcp
+auto eth1
+iface eth1 inet dhcp
