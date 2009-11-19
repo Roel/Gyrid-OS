@@ -34,7 +34,7 @@ LH_LINUX_FLAVOURS="486-voyage"
 
 # $LH_LINUX_PACKAGES: set kernel packages to use
 # (Default: autodetected)
-LH_LINUX_PACKAGES="linux-image-2.6.26 aufs-modules-2.6.26 squashfs-modules-2.6.26 madwifi-modules-2.6.26"
+LH_LINUX_PACKAGES="linux-image-2.6.30 aufs-modules-2.6.30 madwifi-modules-2.6.30"
 
 # $LH_PACKAGES: set packages to install
 # (Default: empty)
