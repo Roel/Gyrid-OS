@@ -1,15 +1,11 @@
 #!/bin/bash
 
 ./build.sh iso
-chown roel:roel voyage-current.iso
 mv voyage-current.iso ../voyage-ugent.iso
 
 ./build.sh tar
-chown roel:roel voyage-current.tar.bz2
 mv voyage-current.tar.bz2 ../voyage-ugent.tar.bz2
 
 cd ..
-tar cvjf voyage-ugent-config.tar.bz2 voyage-live-ugent/config voyage-live-ugent/build.sh voyage-live-ugent/build
-chown roel:roel voyage-ugent-config.tar.bz2
+tar cvjf voyage-ugent-config.tar.bz2 voyage-build-config/config voyage-build-config/build.sh voyage-build-config/build
 md5sum voyage-ugent.iso voyage-ugent.tar.bz2 voyage-ugent-config.tar.bz2 > MD5SUMS
-chown roel:roel MD5SUMS
