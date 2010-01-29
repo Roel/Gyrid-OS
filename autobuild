@@ -7,5 +7,5 @@ mv voyage-current.iso ../voyage-ugent.iso
 mv voyage-current.tar.bz2 ../voyage-ugent.tar.bz2
 
 cd ..
-tar cvjf voyage-ugent-config.tar.bz2 voyage-build-config/config voyage-build-config/build.sh voyage-build-config/build
+tar cvjf voyage-ugent-config.tar.bz2 voyage-build-config/config voyage-build-config/build.sh voyage-build-config/autobuild
 md5sum voyage-ugent.iso voyage-ugent.tar.bz2 voyage-ugent-config.tar.bz2 > MD5SUMS
