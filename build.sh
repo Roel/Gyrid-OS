@@ -8,6 +8,10 @@ if [ $(uname -m) == "x86_64" ] ; then
 	lh_config -a amd64
 fi
 
+#Fix file and directory permission (Git doesn't store these)
+chmod 600 config/chroot_local-includes/root/.ssh/authorized_keys
+chmod 500 config/chroot_local-includes/root/.ssh
+
 Chroot ()
 {
     # Execute commands in chroot
