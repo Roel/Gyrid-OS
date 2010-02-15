@@ -1,11 +1,13 @@
 #!/bin/bash
 
-./build.sh iso
+./build.sh iso 2>&1 | tee build_iso.log
 mv voyage-current.iso ../voyage-ugent.iso
 
-./build.sh tar
+./build.sh tar 2>&1 | tee build_tar.log
 mv voyage-current.tar.bz2 ../voyage-ugent.tar.bz2
+
+mv build_*.log ../
 
 cd ..
 tar cvjf voyage-ugent-config.tar.bz2 voyage-build-config/config voyage-build-config/build.sh voyage-build-config/autobuild
-md5sum voyage-ugent.iso voyage-ugent.tar.bz2 voyage-ugent-config.tar.bz2 > MD5SUMS
+md5sum build_*.log voyage-ugent* > MD5SUMS
