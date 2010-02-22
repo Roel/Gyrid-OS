@@ -19,8 +19,7 @@ cat /etc/motd.voyage >> /etc/motd.tail
 #################################
 echo -n "Modifying /etc/motd for build date... "
 
-sed -i -e "/Version: 0.[0-9]/a (Build Date `date +%Y%m%d`)" /etc/motd.tail
-sed -i -e :a -e "/Version: 0.[0-9]$/N; s/\n/ /; ta" /etc/motd.tail
+sed -i -e "s/%versio/`date +%Y.%m`/; s/%buildda/`date +%Y%m%d`/" /etc/motd.tail
 
 echo "Done"
 
