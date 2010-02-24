@@ -1,37 +1,31 @@
 #!/bin/bash
 
-# Build standard iso image
-./build.sh iso 2>&1 | tee build_iso-i686.log
-mv voyage-current.iso ../voyage-ugent-i686.iso
+build () {
+    # Build iso image
+    ./build.sh iso 2>&1 | tee build_iso-$VERSION.log
+    mv voyage-current.iso ../voyage-ugent-$VERSION.iso
 
-# Build standard tar image
-./build.sh tar 2>&1 | tee build_tar-i686.log
-mv voyage-current.tar.bz2 ../voyage-ugent-i686.tar.bz2
+    # Build tar image
+    ./build.sh tar 2>&1 | tee build_tar-$VERSION.log
+    mv voyage-current.tar.bz2 ../voyage-ugent-$VERSION.tar.bz2
 
-# Move build logs
-mv build_*.log ../
+    # Move build logs
+    mv build_*.log ../
 
-# Tar up configuration and compute md5 hashes
-cd ..
-tar cvjf voyage-ugent-config-i686.tar.bz2 voyage-build-config/config voyage-build-config/build.sh voyage-build-config/autobuild
-md5sum build_*.log voyage-ugent* > MD5SUMS.i686
+    # Tar up configuration and compute md5 hashes
+    cd ..
+    tar cvjf voyage-ugent-config-$VERSION.tar.bz2 voyage-build-config/config \
+        voyage-build-config/build.sh voyage-build-config/autobuild
+    md5sum build_*.log voyage-ugent* > MD5SUMS.$VERSION
+    cd -
+}
 
-cd -
+VERSION="i686"
+build
+
 sed -i '/LH_LINUX_FLAVOURS/{s/ugent-i686/ugent-geode/}' config/chroot
 
-# Build geode iso image
-./build.sh iso 2>&1 | tee build_iso-geode.log
-mv voyage-current.iso ../voyage-ugent-geode.iso
+VERSION="geode"
+build
 
-# Build geode tar image
-./build.sh tar 2>&1 | tee build_tar-geode.log
-mv voyage-current.tar.bz2 ../voyage-ugent-geode.tar.bz2
-
-# Move build logs
-mv build_*.log ../
-
-# Tar up configuration and compute md5 hashes
 sed -i '/LH_LINUX_FLAVOURS/{s/ugent-geode/ugent-i686/}' config/chroot
-cd ..
-tar cvjf voyage-ugent-config-geode.tar.bz2 voyage-build-config/config voyage-build-config/build.sh voyage-build-config/autobuild
-md5sum build_*-geode.log voyage-ugent-geode* > MD5SUMS.geode
