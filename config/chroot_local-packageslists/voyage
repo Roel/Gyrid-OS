@@ -37,3 +37,4 @@ inetutils-inetd
 inetutils-syslogd
 lsof
 bash-completion
+man-db
