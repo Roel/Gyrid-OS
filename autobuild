@@ -12,11 +12,10 @@ build () {
     # Move build logs
     mv build_*.log ../
 
-    # Tar up configuration and compute md5 hashes
+    # Tar up configuration
     cd ..
     tar cvjf voyage-ugent-config-$VERSION.tar.bz2 voyage-build-config/config \
         voyage-build-config/build.sh voyage-build-config/autobuild
-    md5sum build_*.log voyage-ugent* > MD5SUMS.$VERSION
     cd -
 }
 
@@ -27,5 +26,10 @@ sed -i '/LH_LINUX_FLAVOURS/{s/ugent-i686/ugent-geode/}' config/chroot
 
 VERSION="geode"
 build
+
+# Compute md5 hashes
+cd ..
+md5sum voyage-ugent* > MD5SUMS
+cd -
 
 sed -i '/LH_LINUX_FLAVOURS/{s/ugent-geode/ugent-i686/}' config/chroot
