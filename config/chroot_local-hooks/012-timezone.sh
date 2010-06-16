@@ -1,10 +1,10 @@
 #!/bin/sh
 
-echo -n "Setting Timezone to GMT ... "
+echo -n "Setting Timezone to Europe/Brussels ... "
 
-TZ=GMT
+TZ=Europe/Brussels
 echo $TZ > /etc/timezone
 rm -f /etc/localtime
-ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
+cp -a /usr/share/zoneinfo/$TZ /etc/localtime
 
 echo "Done"
