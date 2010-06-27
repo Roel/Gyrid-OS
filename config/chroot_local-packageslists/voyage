@@ -38,3 +38,5 @@ inetutils-syslogd
 lsof
 bash-completion
 man-db
+ntp
+lockfile-progs
