@@ -1,2 +1,2 @@
-deb http://deb.rulus.be/ lenny extras
-deb http://deb.rulus.be/ lenny experimental
+deb http://zeus.ugent.be/~rulus/archive/unstable ./
+deb http://zeus.ugent.be/~rulus/archive/experimental ./
