@@ -34,7 +34,7 @@ LH_LINUX_FLAVOURS="ugent-i686"
 
 # $LH_LINUX_PACKAGES: set kernel packages to use
 # (Default: autodetected)
-LH_LINUX_PACKAGES="linux-image-2.6.32.15"
+LH_LINUX_PACKAGES="linux-image-2.6.32.17"
 
 # $LH_PACKAGES: set packages to install
 # (Default: empty)
