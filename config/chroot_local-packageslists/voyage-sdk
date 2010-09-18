@@ -1,7 +1,11 @@
 #include <voyage-cd>
 
-build-essential libncurses-dev ncurses-dev kernel-package subversion live-helper devscripts
-
-#squashfs-tools genisoimage
-
-
+build-essential
+devscripts
+genisoimage
+kernel-package
+libncurses-dev
+live-helper
+ncurses-dev
+#squashfs-tools
+subversion
