@@ -2,24 +2,15 @@
 auto lo
 iface lo inet loopback
 
-#eth0 static (default)
+#eth0 static
 auto eth0
 iface eth0 inet static
+    metric  1
     address 192.168.1.68
     netmask 255.255.255.0
     gateway 192.168.1.1
 
-#eth1 dhcp (default)
+#eth1 dhcp (default route)
 auto eth1
 iface eth1 inet dhcp
-
-#eth0 dhcp
-#auto eth0
-#iface eth0 inet dhcp
-#    gateway 192.168.1.1
-
-#eth1 static
-#auto eth1
-#iface eth1 inet static
-#    address 192.168.1.68
-#    netmask 255.255.255.0
+    metric 0
