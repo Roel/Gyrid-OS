@@ -10,6 +10,7 @@ elvis-tiny
 gyrid
 ifenslave-2.6
 ifmetric
+ifplugd
 ifupdown
 inetutils-inetd
 inetutils-ping
