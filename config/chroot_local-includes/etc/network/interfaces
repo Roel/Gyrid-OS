@@ -11,6 +11,5 @@ iface eth0 inet static
     gateway 192.168.1.1
 
 #eth1 dhcp (default route)
-auto eth1
 iface eth1 inet dhcp
     metric 0
