@@ -2,6 +2,7 @@ arptables
 aufs-tools
 bash-completion
 bridge-utils
+bzip2
 debconf-english
 deborphan
 dnsmasq
