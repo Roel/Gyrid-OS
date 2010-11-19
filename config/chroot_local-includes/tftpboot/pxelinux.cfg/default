@@ -1,4 +1,4 @@
-say Voyage Linux PXE boot
+say Voyage UGent PXE boot
 serial 0 9600
 console 0
 default 1
