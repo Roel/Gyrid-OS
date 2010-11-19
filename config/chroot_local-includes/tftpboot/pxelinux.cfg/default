@@ -1,7 +1,7 @@
 say Voyage UGent PXE boot
 serial 0 9600
 console 0
-default 1
+default 3
 
 label 0
 	KERNEL linux
