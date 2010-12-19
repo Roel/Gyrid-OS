@@ -127,12 +127,14 @@ echo "Done"
 echo -n "Modifying /etc/hosts ... "
 echo "127.0.0.1 localhost voyage" >> /etc/hosts
 echo "127.0.1.1 voyage" >> /etc/hosts
+echo "Done"
 
 #################################
 # Modifying /etc/ssh/sshd_config
 #################################
-echo -n "\nModifying /etc/ssh/sshd_config ... "
+echo -n "Modifying /etc/ssh/sshd_config ... "
 sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+echo "Done"
 
 #################################
 # Modifying /etc/apt/sources.list
@@ -144,5 +146,4 @@ sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_
 #sed -n  -e "/td><a href=\"http:\/\/ftp\.[a-z][a-z]/ P" | \
 #sed -e "s/^.*a href=\"//g" -e "s/\">.*$//g" -e "s/^/#deb /g " -e "s/$/ lenny main contrib non-free/g" | sort \
 #>> /etc/apt/sources.list
-
-echo "Done"
+#echo "Done"
