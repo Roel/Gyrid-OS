@@ -1,35 +1,23 @@
 #!/bin/bash
 
-build () {
-    # Build iso image
-    ./build.sh iso 2>&1 | tee build_iso-$VERSION.log
-    mv voyage-current.iso ../voyage-ugent-$VERSION.iso
+# Build iso image
+./build.sh iso 2>&1 | tee build_iso.log
+mv voyage-current.iso ../voyage-ugent.iso
 
-    # Build tar image
-    ./build.sh tar 2>&1 | tee build_tar-$VERSION.log
-    mv voyage-current.tar.bz2 ../voyage-ugent-$VERSION.tar.bz2
+# Build tar image
+./build.sh tar 2>&1 | tee build_tar.log
+mv voyage-current.tar.bz2 ../voyage-ugent.tar.bz2
 
-    # Move build logs
-    mv build_*.log ../
+# Move build logs
+mv build_*.log ../
 
-    # Tar up configuration
-    cd ..
-    tar cvjf voyage-ugent-config-$VERSION.tar.bz2 voyage-build-config/config \
-        voyage-build-config/build.sh voyage-build-config/autobuild
-    cd -
-}
-
-VERSION="i686"
-build
-
-sed -i '/LH_LINUX_FLAVOURS/{s/ugent-i686/ugent-geode/}' config/chroot
-
-VERSION="geode"
-build
+# Tar up configuration
+cd ..
+tar cvjf voyage-ugent-config.tar.bz2 voyage-build-config/config \
+    voyage-build-config/build.sh voyage-build-config/autobuild
+cd -
 
 # Compute md5 hashes
 cd ..
 md5sum voyage-ugent* > MD5SUMS
 cd -
-
-sed -i '/LH_LINUX_FLAVOURS/{s/ugent-geode/ugent-i686/}' config/chroot
