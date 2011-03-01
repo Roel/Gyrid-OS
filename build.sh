@@ -68,6 +68,19 @@ BuildISO()
 	fi
 }
 
+BuildIMG()
+{
+    lh_clean
+    lh_config -b usb-hdd --binary-filesystem fat16 --chroot-filesystem squashfs -p voyage-cd
+    lh_build
+
+    if [ -f binary.img ] ; then
+        mv binary.img $DISTRO$ARCH.img
+    else
+        echo "binary.img not found!"
+    fi
+}
+
 BuildSDK()
 {
 	lh_clean
@@ -88,6 +101,9 @@ for TYPE in $1; do
 		;;
 		iso)
 			BuildISO
+		;;
+		img)
+			BuildIMG
 		;;
 		sdk)
 			BuildSDK
