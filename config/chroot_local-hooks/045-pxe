@@ -36,13 +36,13 @@ conf-file=/etc/dnsmasq.pxe.conf
 EOF
 
 ############################################################
-SERVER_IP=192.168.1.200 # !!!!!!!!!!!! CHANGE THIS!
-NET_RANGE=192.168.1.10,192.168.1.20 # !!!!!!!!!!!! CHANGE THIS!
+SERVER_IP=192.168.1.2 # !!!!!!!!!!!! CHANGE THIS!
+NET_RANGE=192.168.1.10,192.168.1.255 # !!!!!!!!!!!! CHANGE THIS!
 DEFAULT_GW=192.168.1.1 # !!!!!!!!!!!! CHANGE THIS!
 DNS_SERVER=192.168.1.1 # !!!!!!!!!!!! CHANGE THIS!
 
 cat <<EOF>/etc/dnsmasq.pxe.conf
-dhcp-range=$NET_RANGE,60m
+dhcp-range=$NET_RANGE,10m
 dhcp-boot=pxelinux.0,$SERVER_IP
 dhcp-option=3,$DEFAULT_GW
 dhcp-option=6,$DNS_SERVER
