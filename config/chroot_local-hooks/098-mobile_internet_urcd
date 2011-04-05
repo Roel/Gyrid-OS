@@ -1,0 +1,3 @@
+#!/bin/bash
+
+update-rc.d mobile-internet defaults 98 02

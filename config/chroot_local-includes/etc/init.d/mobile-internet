@@ -1,0 +1,48 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          mobile-internet
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop mobile internet connection
+### END INIT INFO-
+
+dns() {
+    echo "nameserver 208.67.222.222" > /etc/resolv.conf
+    echo "nameserver 208.67.220.220" >> /etc/resolv.conf
+    echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+    echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+}
+
+stop() {
+    if [ `ps aux | grep 'wvdial connect' | wc -l` -gt 1 ]; then
+        kill `ps aux | grep "wvdial connect" | head -n 1 | awk '{print $2}'`
+    fi
+}
+
+case "$1" in
+    start)
+        if [ -e /dev/ttyUSB3 ]; then
+            dns
+            wvdial &
+            sleep 2
+            wvdial on &
+            sleep 2
+            wvdial connect &
+        fi
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        if [ `ps aux | grep 'wvdial connect' | wc -l` -gt 1 ]; then
+            stop
+            sleep 4
+        fi
+        if [ -e /dev/ttyUSB3 ]; then
+            dns
+            wvdial connect &
+        fi
+        ;;
+esac
