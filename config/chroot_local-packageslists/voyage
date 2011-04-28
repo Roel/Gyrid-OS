@@ -30,7 +30,6 @@ man-db
 module-init-tools
 net-tools
 ntp
-ntpdate
 pciutils
 pcmciautils
 portmap
