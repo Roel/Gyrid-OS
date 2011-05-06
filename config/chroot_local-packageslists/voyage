@@ -1,5 +1,6 @@
 arptables
 aufs-tools
+autossh
 bash-completion
 bridge-utils
 bzip2
