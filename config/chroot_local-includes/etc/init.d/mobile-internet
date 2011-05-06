@@ -8,6 +8,7 @@
 # Short-Description: Start/stop mobile internet connection
 ### END INIT INFO-
 
+
 dns() {
     echo "nameserver 208.67.222.222" > /etc/resolv.conf
     echo "nameserver 208.67.220.220" >> /etc/resolv.conf
@@ -16,14 +17,18 @@ dns() {
 }
 
 stop() {
-    if [ `ps aux | grep 'wvdial connect' | wc -l` -gt 1 ]; then
-        kill `ps aux | grep "wvdial connect" | head -n 1 | awk '{print $2}'`
+    if [ `ps aux | grep 'wvdial\|pppd' | grep -v grep | wc -l` -gt 0 ]; then
+        echo "Stopping mobile internet."
+        for i in `ps aux | grep 'wvdial\|pppd' | grep -v grep | awk '{print $2}'`; do
+            kill $i
+        done
     fi
 }
 
 case "$1" in
     start)
         if [ -e /dev/ttyUSB3 ]; then
+            echo "Starting mobile internet."
             dns
             wvdial &
             sleep 2
@@ -36,11 +41,12 @@ case "$1" in
         stop
         ;;
     restart)
-        if [ `ps aux | grep 'wvdial connect' | wc -l` -gt 1 ]; then
+        if [ `ps aux | grep 'wvdial\|pppd' | grep -v grep | wc -l` -gt 0 ]; then
             stop
             sleep 4
         fi
         if [ -e /dev/ttyUSB3 ]; then
+            echo "Restarting mobile internet."
             dns
             wvdial connect &
         fi
