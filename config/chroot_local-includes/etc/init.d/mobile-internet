@@ -26,7 +26,7 @@ stop() {
 
 case "$1" in
     start)
-        if [ -e /dev/ttyUSB3 ]; then
+        if [[ -e /dev/ttyUSB3 && ! -f /voyage.install ]]; then
             echo "Starting mobile internet."
             dns
             wvdial &
@@ -44,7 +44,7 @@ case "$1" in
             stop
             sleep 4
         fi
-        if [ -e /dev/ttyUSB3 ]; then
+        if [[ -e /dev/ttyUSB3 && ! -f /voyage.install ]]; then
             echo "Restarting mobile internet."
             dns
             wvdial connect &
