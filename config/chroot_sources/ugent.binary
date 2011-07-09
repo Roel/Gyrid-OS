@@ -1,2 +1,2 @@
-deb http://zeus.ugent.be/~rulus/archive/unstable ./
-deb http://zeus.ugent.be/~rulus/archive/experimental ./
+deb http://157.193.167.223/repo/unstable ./
+deb http://157.193.167.223/repo/experimental ./
