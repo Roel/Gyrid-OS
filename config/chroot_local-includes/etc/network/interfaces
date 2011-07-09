@@ -6,9 +6,8 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet static
     metric  2
-    address 192.168.1.68
-    netmask 255.255.255.0
-    gateway 192.168.1.1
+    address 10.25.83.1
+    netmask 255.0.0.0
 
 #eth1 dhcp
 iface eth1 inet dhcp
