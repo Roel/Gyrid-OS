@@ -4,10 +4,6 @@
 ./build.sh iso 2>&1 | tee build_iso.log
 mv voyage-current.iso ../voyage-ugent.iso
 
-# Build usb image
-./build.sh img 2>&1 | tee build_img.log
-mv voyage-current.img ../voyage-ugent.img
-
 # Build tar image
 ./build.sh tar 2>&1 | tee build_tar.log
 mv voyage-current.tar.bz2 ../voyage-ugent.tar.bz2
