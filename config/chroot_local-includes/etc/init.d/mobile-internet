@@ -18,6 +18,9 @@ dns() {
 stop() {
     if [ `ps aux | grep 'wvdial\|pppd' | grep -v grep | wc -l` -gt 0 ]; then
         echo "Stopping mobile internet."
+        if [ -f /tmp/mobile-internet-enabled ]; then
+            rm /tmp/mobile-internet-enabled
+        fi
         for i in `ps aux | grep 'wvdial\|pppd' | grep -v grep | awk '{print $2}'`; do
             kill $i
         done
@@ -28,6 +31,7 @@ case "$1" in
     start)
         if [[ -e /dev/ttyUSB3 && ! -f /voyage.install ]]; then
             echo "Starting mobile internet."
+            touch /tmp/mobile-internet-enabled
             dns
             wvdial &
             sleep 2
