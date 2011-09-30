@@ -1,2 +1,2 @@
-deb http://157.193.167.223/repo/unstable ./
-deb http://157.193.167.223/repo/experimental ./
+deb http://we12s003.ugent.be/repository/unstable ./
+deb http://we12s003.ugent.be/repository/experimental ./
