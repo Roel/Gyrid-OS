@@ -14,7 +14,7 @@ LB_BOOTSTRAP_EXCLUDE=""
 
 # $LB_BOOTSTRAP_FLAVOUR: select flavour to use
 # (Default: empty)
-LB_BOOTSTRAP_FLAVOUR=""
+LB_BOOTSTRAP_FLAVOUR="minimal"
 
 # $LB_BOOTSTRAP_KEYRING: set distribution keyring
 # (Default: empty)
@@ -117,12 +117,12 @@ LB_MIRROR_DEBIAN_INSTALLER="http://ftp.debian.org/debian/"
 LB_ARCHIVES=""
 
 # $LB_ARCHIVE_AREAS: select archive areas to use
-# (Default: main)
-LB_ARCHIVE_AREAS="main"
+# (Default: main contrib non-free)
+LB_ARCHIVE_AREAS="main contrib non-free"
 
 # $LB_PARENT_ARCHIVE_AREAS: select archive areas to use
-# (Default: main)
-LB_PARENT_ARCHIVE_AREAS="main"
+# (Default: main contrib non-free)
+LB_PARENT_ARCHIVE_AREAS="main contrib non-free"
 
 # $LB_BOOTSTRAP_QEMU_ARCHITECTURES: architectures to use foreign bootstrap
 # (Default: )

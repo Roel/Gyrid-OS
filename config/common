@@ -20,16 +20,16 @@ LB_APT_HTTP_PROXY=""
 LB_APT_PIPELINE=""
 
 # $LB_APT_RECOMMENDS: set apt/aptitude recommends
-# (Default: true)
-LB_APT_RECOMMENDS="true"
+# (Default: false)
+LB_APT_RECOMMENDS="false"
 
 # $LB_APT_SECURE: set apt/aptitude security
 # (Default: true)
 LB_APT_SECURE="true"
 
 # $LB_APT_SOURCE_ARCHIVES: set apt/aptitude source entries in sources.list
-# (Default: true)
-LB_APT_SOURCE_ARCHIVES="true"
+# (Default: false)
+LB_APT_SOURCE_ARCHIVES="false"
 
 # $LB_BOOTSTRAP: set bootstrap program
 # (Default: debootstrap)
@@ -64,8 +64,8 @@ LB_DEBCONF_NOWARNINGS="yes"
 LB_DEBCONF_PRIORITY="critical"
 
 # $LB_INITRAMFS: set initramfs hook
-# (Default: auto)
-LB_INITRAMFS="auto"
+# (Default: live-boot)
+LB_INITRAMFS="live-boot"
 
 # $LB_INITRAMFS_COMPRESSION: set initramfs compression
 # (Default: gzip)
@@ -140,5 +140,5 @@ _QUIET="false"
 # Internal stuff (FIXME)
 APT_OPTIONS="--yes"
 APTITUDE_OPTIONS="--assume-yes"
-GZIP_OPTIONS="-6 --rsyncable"
+GZIP_OPTIONS="-6  --rsyncable"
 ISOHYBRID_OPTIONS=""

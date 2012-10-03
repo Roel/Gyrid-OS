@@ -33,12 +33,12 @@ LB_LINUX_FLAVOURS="486 686-pae"
 LB_LINUX_PACKAGES="linux-image"
 
 # $LB_PACKAGE_LISTS: set package list to install
-# (Default: standard)
-LB_PACKAGE_LISTS="standard"
+# (Default: minimal)
+LB_PACKAGE_LISTS="minimal"
 
 # $LB_SECURITY: enable security updates
-# (Default: false)
-LB_SECURITY="false"
+# (Default: true)
+LB_SECURITY="true"
 
 # $LB_VOLATILE: enable volatile updates
 # (Default: false)
