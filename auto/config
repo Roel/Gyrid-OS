@@ -1,5 +1,23 @@
 #!/bin/sh
 
 lb config noauto \
-	--package-lists "standard" \
+    --apt-indices none \
+    --apt-recommends false \
+    --apt-source-archives false \
+    --architectures i386 \
+    --archive-areas "main contrib non-free" \
+    --backports false \
+    --bootstrap-flavour minimal \
+    --distribution wheezy \
+    --firmware-binary true \
+    --firmware-chroot true \
+    --iso-application "Gyrid OS" \
+    --iso-publisher "UGent, Department of Geography, Carto-GIS; http://cartogis.ugent.be/" \
+    --iso-volume "Gyrid OS $(date +%Y%m%d-%H%M)" \
+    --memtest none \
+    --package-lists "minimal" \
+    --parent-archive-areas "main contrib non-free" \
+    --parent-distribution wheezy \
+    --security true \
+    --win32-loader false \
 	"${@}"
