@@ -14,7 +14,7 @@ LB_APT_INDICES="none"
 
 # $LB_BOOTAPPEND_LIVE: set boot parameters
 # (Default: empty)
-LB_BOOTAPPEND_LIVE=""
+LB_BOOTAPPEND_LIVE="hostname=gyrid-os username=bluemap timezone=Europe/Brussels"
 
 # $LB_BOOTAPPEND_INSTALL: set boot parameters
 # (Default: empty)
@@ -74,8 +74,8 @@ LB_HDD_SIZE="10000"
 LB_ISO_APPLICATION="Gyrid OS"
 
 # $LB_ISO_PREPARER: set iso preparer
-# (Default: live-build $VERSION; http://packages.qa.debian.org/live-build)
-LB_ISO_PREPARER="live-build $VERSION; http://packages.qa.debian.org/live-build"
+# (Default: live-build 3.0~a51-1; http://packages.qa.debian.org/live-build)
+LB_ISO_PREPARER="live-build 3.0~a51-1; http://packages.qa.debian.org/live-build"
 
 # $LB_ISO_PUBLISHER: set iso publisher
 # (Default: UGent, Department of Geography, Carto-GIS; http://cartogis.ugent.be/)
