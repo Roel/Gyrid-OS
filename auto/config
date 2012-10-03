@@ -14,6 +14,7 @@ lb config noauto \
     --iso-application "Gyrid OS" \
     --iso-publisher "UGent, Department of Geography, Carto-GIS; http://cartogis.ugent.be/" \
     --iso-volume "Gyrid OS" \
+    --linux-flavours 486 \
     --memtest none \
     --package-lists "minimal" \
     --parent-archive-areas "main contrib non-free" \
