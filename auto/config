@@ -7,6 +7,10 @@ lb config noauto \
     --architectures i386 \
     --archive-areas "main contrib non-free" \
     --backports false \
+    --bootappend-live \
+"hostname=gyrid-os \
+username=bluemap \
+timezone=Europe/Brussels" \
     --bootstrap-flavour minimal \
     --distribution wheezy \
     --firmware-binary true \
