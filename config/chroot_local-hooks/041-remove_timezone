@@ -1,5 +1,0 @@
-#!/bin/sh
-
-echo -n "Removing Timezone in /usr/share/zoneinfo ... "
-rm -rf /usr/share/zoneinfo/*
-echo "Done"

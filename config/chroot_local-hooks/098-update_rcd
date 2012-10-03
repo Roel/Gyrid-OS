@@ -1,4 +1,0 @@
-#!/bin/bash
-
-update-rc.d mobile-internet defaults 96 02
-update-rc.d ip-routing defaults 97 02
