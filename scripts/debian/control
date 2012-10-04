@@ -1,0 +1,11 @@
+Source: gyrid-scripts
+Section: admin
+Priority: extra
+Maintainer: Roel Huybrechts <roel.huybrechts@ugent.be>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+
+Package: gyrid-scripts-pxe
+Architecture: all
+Description: Gyrid scripts for PXE netinstall
+ Scripts and configuration to perform network installation via PXE boot.
