@@ -8,6 +8,7 @@ Standards-Version: 3.9.3
 Package: gyrid-scripts-pxe
 Architecture: all
 Depends: atftpd(>= 0.7),
+ dnsmasq (>= 2.55),
  ifupdown (>= 0.6.10),
  net-tools (>= 1.60),
  nfs-kernel-server (>= 1:1.2.2)
