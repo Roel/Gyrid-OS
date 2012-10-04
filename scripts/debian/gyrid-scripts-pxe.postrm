@@ -1,0 +1,27 @@
+#!/bin/sh
+
+sed -i -e '/dnsmasq.more.conf/{s/^/#/}' /etc/dnsmasq.conf
+sed -i -e '/pxe/d' /etc/dnsmasq.more.conf
+rm /etc/dnsmasq.pxe.conf
+
+#  config syslinux and tftpboot
+rm /tftpboot/pxelinux.0
+rm /tftpboot/linux
+rm /tftpboot/initrd.img
+
+#  config nfs export
+sed -i -e '/fsid=4[02]/d' /etc/exports
+
+#  config atftpd
+sed -i -e 's/^#tftp/tftp/' /etc/inetd.conf
+sed -i 's/USE_INETD=false/USE_INETD=true/' /etc/default/atftpd
+sed -i -e '/tftpboot/d' /etc/default/atftpd
+
+#  config inittab - enable serial
+sed -i -e "s/^T0:/#T0:/" /etc/inittab
+
+#  enable atftpd
+update-rc.d atftpd defaults
+
+#  enable nfs-kernel-server
+update-rc.d nfs-kernel-server defaults
