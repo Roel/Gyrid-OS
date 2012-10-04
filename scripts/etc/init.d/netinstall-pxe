@@ -1,35 +1,18 @@
 #! /bin/bash
 ### BEGIN INIT INFO
-# Provides:          voyage-pxe
+# Provides:          netinstall-pxe
 # Required-Start:    $all
 # Required-Stop:
 # Should-Start:
 # Should-Stop:
 # Default-Start:
 # Default-Stop:
-# Short-Description: Voyage PXE start/stop script
+# Short-Description: Netinstall PXE start/stop script
 ### END INIT INFO
-#
-# skeleton  example file to build /etc/init.d/ scripts.
-#       This file should be used to construct scripts for /etc/init.d.
-#
-#       Written by Miquel van Smoorenburg <miquels@cistron.nl>.
-#       Modified for Debian
-#       by Ian Murdock <imurdock@gnu.ai.mit.edu>.
-#
-# Version:  @(#)skeleton  1.9  26-Feb-2001  miquels@cistron.nl
-#
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-NAME=voyage-pxe
-DESC=voyage-pxe
-
-#test -x $DAEMON || exit 0
-
-# Include voyage-util defaults if available
-if [ -f /etc/default/voyage-util ] ; then
-    . /etc/default/voyage-util
-fi
+NAME=netinstall-pxe
+DESC=netinstall-pxe
 
 set -e
 
@@ -62,18 +45,10 @@ case $1 in
 			echo "No serial setting is supplied, using 9600"
 		fi
 		
-		echo -n "Setting up eth0 to 192.168.1.2 ... "
+		echo -n "Setting up eth0 to 192.168.1.1 ... "
 		ifdown eth0
-		ifconfig eth0 192.168.1.2 netmask 255.255.255.0 up
-		echo "Done."
-		
-		#echo -n "mounting /media ... "
-		#mount -o loop /live/image/live/filesystem.squashfs /media
-		
-		#if [ ! -d /filesystem.squashfs ] ; then mkdir /filesystem.squashfs ; fi
-		#mount -o loop /live_media/casper/filesystem.squashfs /filesystem.squashfs
-		#mount -n -t unionfs -o dirs=/cow=rw:/filesystem.squashfs=ro unionfs /media
-		#echo "Done."
+		ifconfig eth0 192.168.1.1 netmask 255.255.255.0 up
+		echo "OK."
 		
 		rm -f /tftpboot/linux /tftpboot/initrd.img
 		cp /vmlinuz /tftpboot/linux
@@ -81,16 +56,10 @@ case $1 in
 
 		/etc/init.d/nfs-kernel-server restart
 		/etc/init.d/atftpd restart
-
 		;;
 	'stop')
 		/etc/init.d/nfs-kernel-server stop
 		/etc/init.d/atftpd stop
-		
-		#echo -n "Un-mounting /media ... "
-		#umount /media
-		#umount /filesystem.squashfs
-		#echo "Done."
 		
 		echo -n "Restoring eth0 ... "
 		ifconfig eth0 down	

@@ -7,5 +7,9 @@ Standards-Version: 3.9.3
 
 Package: gyrid-scripts-pxe
 Architecture: all
+Depends: atftpd(>= 0.7),
+ ifupdown (>= 0.6.10),
+ net-tools (>= 1.60),
+ nfs-kernel-server (>= 1:1.22)
 Description: Gyrid scripts for PXE netinstall
  Scripts and configuration to perform network installation via PXE boot.
