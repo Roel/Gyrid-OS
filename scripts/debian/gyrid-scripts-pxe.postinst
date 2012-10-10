@@ -1,22 +1,6 @@
 #!/bin/sh
 
-#  config dnsmasq
-sed -i -e '/dnsmasq.more.conf/{s/^#//}' /etc/dnsmasq.conf
-cat <<EOF>>/etc/dnsmasq.more.conf
-conf-file=/etc/dnsmasq.pxe.conf
-EOF
-
-SERVER_IP=192.168.1.2
-NET_RANGE=192.168.1.10,192.168.1.255
-DEFAULT_GW=192.168.1.1
-DNS_SERVER=192.168.1.1
-
-cat <<EOF>/etc/dnsmasq.pxe.conf
-dhcp-range=$NET_RANGE,10m
-dhcp-boot=pxelinux.0,$SERVER_IP
-dhcp-option=3,$DEFAULT_GW
-dhcp-option=6,$DNS_SERVER
-EOF
+PKG=gyrid-scripts-pxe
 
 #  config syslinux and tftpboot
 cp /usr/lib/syslinux/pxelinux.0 /tftpboot/
@@ -25,24 +9,16 @@ ln -s /initrd.img /tftpboot/initrd.img
 chown root:root -R /tftpboot/*
 chmod u+r -R /tftpboot/*
 
-#  config nfs export
-cat << EOF >> /etc/exports
-/live/image  192.168.1.0/255.255.255.0(ro,fsid=42,no_subtree_check,insecure,no_root_squash,async)
-/postinst.d  192.168.1.0/255.255.255.0(ro,fsid=40,no_subtree_check,insecure,no_root_squash,async)
-EOF
+if [ "$1" = configure ] ; then
+        for f in \
+            default/atftpd \
+            exports
+        do
+            dpkg-divert --add --package ${PKG} --rename \
+                    --divert /etc/$f.distrib /etc/$f
+            [ \! -e /etc/$f -o -L /etc/$f ] && ln -sf /usr/config/$f /etc/$f
+        done
+fi
 
-#  config atftpd
-sed -i -e 's/^tftp/#tftp/' /etc/inetd.conf
-sed -i 's/USE_INETD=true/USE_INETD=false/' /etc/default/atftpd
-cat << EOF >> /etc/default/atftpd
-OPTIONS="-t 300 -r 5 -m 100 --mcast-port 1758 --mcast-addr 239.239.239.0-255 --mcast-ttl 1 --verbose=5 --user=root.root --daemon /tftpboot"
-EOF
-
-#  config inittab - enable serial
-sed -i -e "s/^#T0:/T0:/" /etc/inittab
-
-#  disable atftpd
 update-rc.d -f atftpd remove
-
-#  disable nfs-kernel-server
 update-rc.d -f nfs-kernel-server remove

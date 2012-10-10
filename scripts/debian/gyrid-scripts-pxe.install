@@ -1,2 +1,3 @@
-etc/init.d/netinstall-pxe
-tftpboot
+pxe/etc /
+pxe/usr /
+pxe/tftpboot /
