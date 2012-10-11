@@ -2,12 +2,6 @@
 
 PKG=gyrid-scripts-pxe
 
-#  deconfig syslinux and tftpboot
-rm /tftpboot/pxelinux.0
-rm /tftpboot/linux
-rm /tftpboot/initrd.img
-rmdir /tftpboot &> /dev/null
-
 if [ "$1" = remove ] ; then
         for f in \
             default/atftpd \
