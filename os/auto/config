@@ -25,6 +25,8 @@ vga=normal" \
     --package-lists "minimal" \
     --parent-archive-areas "main contrib non-free" \
     --parent-distribution wheezy \
+    --parent-mirror-binary "http://ftp.be.debian.org/debian/" \
+    --parent-mirror-bootstrap "http://ftp.be.debian.org/debian/" \
     --security true \
     --win32-loader false \
 	"${@}"
