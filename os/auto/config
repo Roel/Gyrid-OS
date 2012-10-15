@@ -10,7 +10,9 @@ lb config noauto \
     --bootappend-live \
 "hostname=gyrid-os \
 username=bluemap \
-timezone=Europe/Brussels" \
+timezone=Europe/Brussels \
+nomodeset \
+vga=normal" \
     --bootstrap-flavour minimal \
     --distribution wheezy \
     --firmware-binary true \
