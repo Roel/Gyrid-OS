@@ -15,3 +15,8 @@ Depends: atftpd(>= 0.7),
  syslinux-common (>= 2:4.02)
 Description: Gyrid scripts for PXE netinstall
  Scripts and configuration to perform network installation via PXE boot.
+
+Package: gyrid-scripts-serial
+Architecture: all
+Description: Gyrid scripts for setting up a serial console
+ Scripts and configuration to enable a serial console.
