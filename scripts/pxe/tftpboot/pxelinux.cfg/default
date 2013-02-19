@@ -5,7 +5,7 @@ default 0
 
 label 0
 	KERNEL linux
-	APPEND initrd=initrd.img boot=live netboot=nfs nfsroot=192.168.1.1:/live/image live-getty noautologin debug ethdevice=eth0 console=ttyS0,38400n8
+	APPEND initrd=initrd.img boot=live netboot=nfs nfsroot=192.168.1.1:/live/image live-getty noautologin debug ethdevice=eth0 console=ttyS0,38400n8 autoinstall=alix
 
 implicit 0
 display display.msg
