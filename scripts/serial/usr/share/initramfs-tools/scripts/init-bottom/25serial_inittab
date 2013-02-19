@@ -65,7 +65,7 @@ if [ ! -z "${DEFCONSOLE}" ]; then
 fi
 
 if [ ! -z "${AUTOINSTALL}" ] ; then
-	echo "V0:23:once:/usr/local/sbin/autoinstall.sh ${AUTOINSTALL}" >> /root/etc/inittab
+	echo "V0:23:once:/usr/sbin/autoinstall.sh ${AUTOINSTALL}" >> /root/etc/inittab
 	sed -i -e "s/^T0/#T0/" /root/etc/inittab 
 fi
 
