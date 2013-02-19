@@ -3,4 +3,7 @@
 PKG=gyrid-scripts-serial
 
 sed -i -e "s/^#T0:/T0:/" /etc/inittab
-telinit q
+
+if [ -f /run/initctl ]; then
+    telinit q
+fi
