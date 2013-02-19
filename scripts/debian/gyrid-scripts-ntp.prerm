@@ -1,0 +1,13 @@
+#!/bin/sh
+
+PKG=gyrid-scripts-ntp
+
+if [ "$1" = remove ] ; then
+        for f in \
+            ntp.conf
+        do
+                [ -L /etc/$f ] && rm /etc/$f
+                dpkg-divert --remove --package ${PKG} --rename \
+                        --divert /etc/$f.distrib /etc/$f
+        done
+fi

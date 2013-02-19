@@ -5,9 +5,15 @@ Maintainer: Roel Huybrechts <roel.huybrechts@ugent.be>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 
+Package: gyrid-scripts-ntp
+Architecture: all
+Depends: ntp (>= 1:4.2.6)
+Description: Gyrid scripts for accurate timekeeping
+ Scripts and configuration to ensure an accurate clock at all times.
+
 Package: gyrid-scripts-pxe
 Architecture: all
-Depends: atftpd(>= 0.7),
+Depends: atftpd (>= 0.7),
  dnsmasq (>= 2.55),
  ifupdown (>= 0.6.10),
  net-tools (>= 1.60),

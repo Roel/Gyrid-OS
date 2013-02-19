@@ -1,0 +1,2 @@
+# Call the NTP restart script every 15 minutes (only restart if necessary)
+3,18,33,48 * * * * root /usr/local/sbin/ntp-restart &> /dev/null
