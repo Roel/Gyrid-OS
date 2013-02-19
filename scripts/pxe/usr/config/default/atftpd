@@ -1,2 +1,2 @@
 USE_INETD=false
-OPTIONS="-t 300 -r 5 -m 100 --mcast-port 1758 --mcast-addr 239.239.239.0-255 --mcast-ttl 1 --verbose=5 --user=root.root --daemon /tftpboot"
+OPTIONS="-t 300 -r 5 -m 100 --port 69 --mcast-port 1758 --mcast-addr 239.239.239.0-255 --mcast-ttl 1 --verbose=5 --user=root.root --daemon /tftpboot"

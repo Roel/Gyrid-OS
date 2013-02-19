@@ -1,11 +1,11 @@
 say Gyrid OS PXE boot
-serial 0 9600
+serial 0 38400
 console 0
 default 0
 
 label 0
 	KERNEL linux
-	APPEND initrd=initrd.img boot=live netboot=nfs nfsroot=192.168.1.1:/live/image live-getty noautologin debug console=ttyS0,9600n8
+	APPEND initrd=initrd.img boot=live netboot=nfs nfsroot=192.168.1.1:/live/image live-getty noautologin debug ethdevice=eth0 console=ttyS0,38400n8
 
 implicit 0
 display display.msg
