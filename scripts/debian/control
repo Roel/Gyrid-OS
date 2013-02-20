@@ -28,3 +28,10 @@ Package: gyrid-scripts-serial
 Architecture: all
 Description: Gyrid scripts for setting up a serial console
  Scripts and configuration to enable a serial console.
+
+Package: gyrid-scripts-usb
+Architecture: all
+Depends: python (>= 2.7.3),
+ udev (>= 175)
+Description: Gyrid scripts for USB memory drive interaction
+ Scripts and configuration to enable USB data readout and commands.
