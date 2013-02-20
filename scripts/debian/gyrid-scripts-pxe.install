@@ -1,3 +1,4 @@
 pxe/etc /
-pxe/usr /
+pxe/postinst.d /
 pxe/tftpboot /
+pxe/usr /

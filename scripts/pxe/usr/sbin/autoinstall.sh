@@ -102,7 +102,7 @@ if [ ! -d /tmp/postinst.d ]; then
     mkdir /tmp/postinst.d
 fi
 
-mount -t nfs 192.168.1.2:/postinst.d /tmp/postinst.d
+mount -t nfs 192.168.1.1:/postinst.d /tmp/postinst.d
 
 if [ $? -eq 0 ]; then
     cd /tmp/postinst.d
