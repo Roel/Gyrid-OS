@@ -25,8 +25,12 @@ Description: Gyrid scripts for network connectivity
 
 Package: gyrid-scripts-netmgr
 Architecture: all
-Depends: network-manager (>= 0.9.4.0),
- iptables (>= 1.4.14)
+Depends: dnsmasq (>= 2.62),
+ network-manager (>= 0.9.4.0),
+ iptables (>= 1.4.14),
+ uuid-runtime (>= 2.20.1),
+ isc-dhcp-client (>= 4.2.2),
+ wvdial (>= 1.61)
 Description: Gyrid scripts for network connectivity
  Scripts and configuration that provide network connectivity via
  LAN, WLAN and mobile broadband. Also includes DHCP configuration

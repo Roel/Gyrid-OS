@@ -1,0 +1,13 @@
+#Loopback interface
+auto lo
+iface lo inet loopback
+
+#eth0 static
+auto eth0
+iface eth0 inet static
+    metric  2
+    address 10.25.83.1
+    netmask 255.0.0.0
+
+#ppp0 not managed by network-manager
+auto ppp0
