@@ -1,2 +1,2 @@
-/live/image  192.168.1.0/255.255.255.0(ro,fsid=42,no_subtree_check,insecure,no_root_squash,async)
+/lib/live/mount/medium  192.168.1.0/255.255.255.0(ro,fsid=42,no_subtree_check,insecure,no_root_squash,async)
 /postinst.d  192.168.1.0/255.255.255.0(ro,fsid=40,no_subtree_check,insecure,no_root_squash,async)

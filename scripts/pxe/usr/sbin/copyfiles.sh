@@ -97,6 +97,7 @@ reconfig_resolvconf "$TARGET_MOUNT"
 reconfig_ntp "$TARGET_MOUNT"
 
 rm $TARGET_MOUNT/voyage.install &> /dev/null
+touch $TARGET_MOUNT/new.install &> /dev/null
 
 ${EXECDIR}/setboot.sh
 write_config "$TARGET_MOUNT/etc/voyage.conf" "$VOYAGE_CONF_LIST"

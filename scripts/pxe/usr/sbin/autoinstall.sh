@@ -45,6 +45,8 @@ if [ $? != 0 ] ; then exit 1; fi
 
 ########################################################################
 
+modprobe leds-alix
+modprobe ledtrig-heartbeat
 echo heartbeat > /sys/class/leds/alix\:1/trigger
 echo heartbeat > /sys/class/leds/alix\:2/trigger
 echo heartbeat > /sys/class/leds/alix\:3/trigger
@@ -54,7 +56,7 @@ if [ ! -d $TARGET_MOUNT ] ; then mkdir $TARGET_MOUNT ; fi
 umount $DISTDIR &> /dev/null
 umount $TARGET_MOUNT &> /dev/null
 
-SQFS=$(find / -name "filesystem.squashfs" | head -n1)
+SQFS=$(find / -type f -name "filesystem.squashfs" | head -n1)
 if [ ! -z $SQFS ] ; then
 	mount -o loop $SQFS $DISTDIR
 else
