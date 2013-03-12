@@ -1,0 +1,5 @@
+#!/bin/sh
+
+PKG=gyrid-scripts-net
+
+update-rc.d gyrid-os defaults 99 01

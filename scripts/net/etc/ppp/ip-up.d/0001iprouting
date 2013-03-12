@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ip route add default dev $PPP_IFACE metric 1

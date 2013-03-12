@@ -5,6 +5,33 @@ Maintainer: Roel Huybrechts <roel.huybrechts@ugent.be>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 
+Package: gyrid-scripts-core
+Architecture: all
+Description: Gyrid core scripts
+ Gyrid core scripts and configuration.
+
+Package: gyrid-scripts-net
+Architecture: all
+Depends: dnsmasq (>= 2.62),
+ ifplugd (>= 0.28),
+ ifmetric (>= 0.3),
+ iptables (>= 1.4.14),
+ isc-dhcp-client (>= 4.2.2),
+ wvdial (>= 1.61)
+Description: Gyrid scripts for network connectivity
+ Scripts and configuration that provide network connectivity via
+ LAN, WLAN and mobile broadband. Also includes DHCP configuration
+ and network routing and sharing.
+
+Package: gyrid-scripts-netmgr
+Architecture: all
+Depends: network-manager (>= 0.9.4.0),
+ iptables (>= 1.4.14)
+Description: Gyrid scripts for network connectivity
+ Scripts and configuration that provide network connectivity via
+ LAN, WLAN and mobile broadband. Also includes DHCP configuration
+ and network routing and sharing.
+
 Package: gyrid-scripts-ntp
 Architecture: all
 Depends: ntp (>= 1:4.2.6)
@@ -28,6 +55,15 @@ Package: gyrid-scripts-serial
 Architecture: all
 Description: Gyrid scripts for setting up a serial console
  Scripts and configuration to enable a serial console.
+
+Package: gyrid-scripts-ssh
+Architecture: all
+Depends: autossh (>= 1.4c),
+ openssh-client (>= 1:6.0p1),
+ openssh-server (>= 1:6.0p1)
+Description: Gyrid scripts for SSH
+ Scripts and configuration to enable SSH connections to the device,
+ both local and reverse via the server.
 
 Package: gyrid-scripts-usb
 Architecture: all

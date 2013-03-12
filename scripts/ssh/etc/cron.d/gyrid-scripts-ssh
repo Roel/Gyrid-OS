@@ -1,0 +1,2 @@
+# Call the autoSSH restart script every 15 minutes (only restart if necessary)
+4,19,34,49 * * * * root /usr/sbin/autossh-restart &> /dev/null

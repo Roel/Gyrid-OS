@@ -1,0 +1,14 @@
+#Loopback interface
+auto lo
+iface lo inet loopback
+
+#eth0 static
+auto eth0
+iface eth0 inet static
+    metric  2
+    address 10.25.83.1
+    netmask 255.0.0.0
+
+#eth1 dhcp
+iface eth1 inet dhcp
+    metric 0
