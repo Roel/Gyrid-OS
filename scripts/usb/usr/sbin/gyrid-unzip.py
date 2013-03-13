@@ -36,6 +36,9 @@ output = sys.argv[1].rstrip('/')
 
 scanfiles = glob.glob('scan*')
 rssifiles = glob.glob('rssi*')
+inquiryfiles = glob.glob('inquiry*')
+anglefiles = glob.glob('angle*')
+
 scan_lines = 0
 rssi_lines = 0
 uniq_pool = set()
@@ -57,5 +60,23 @@ if len(rssifiles) > 0:
         rssi_lines += unzip(r, f, output_rssi)
 
     output_rssi.close()
+
+if len(anglefiles) > 0:
+    output_angle = open(output + '/angle.log', 'a')
+    r = re.compile(r'^[0-9]{8}-[0-9]{6}-[A-Za-z]*,([0-9A-F][0-9A-F]:){5}[0-9A-F][0-9A-F],-?[0-9]+,[0-9]{1,3}\.?[0-9]*$')
+
+    for f in glob.glob('angle*'):
+        unzip(r, f, output_angle)
+
+    output_angle.close()
+
+if len(inquiryfiles) > 0:
+    output_inquiry = open(output + '/inquiry.log', 'a')
+    r = re.compile(r'^[0-9]{8}-[0-9]{6}-[A-Za-z]*$')
+
+    for f in glob.glob('inquiry*'):
+        unzip(r, f, output_inquiry)
+
+    output_inquiry.close()
 
 print "%i %i %i" % (scan_lines, rssi_lines, len(uniq_pool))

@@ -139,6 +139,16 @@ temporary_usb() {
                         lines_rssi=0
                     fi
 
+                    if [ -f inquiry.log ]; then
+                        sort -T $MOUNTPOINT inquiry.log -o inquiry.log
+                        mv inquiry.log ../`hostname`-$i-inquiry.log
+                    fi
+
+                    if [ -f angle.log ]; then
+                        sort -T $MOUNTPOINT angle.log -o angle.log
+                        mv angle.log ../`hostname`-$i-angle.log
+                    fi
+
             rm -r $DATAPATH/merged_logs/$i
 
             #Write useful statistics to meta.txt
