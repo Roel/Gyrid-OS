@@ -1,8 +1,0 @@
-#!/bin/sh
-
-sed -i -e "/dnsmasq.more.conf/{s/^/#/}" /etc/dnsmasq.conf
-
-if [ "$1" = purge ]; then
-    update-rc.d -f ip-routing remove
-    update-rc.d -f mobile-internet remove
-fi

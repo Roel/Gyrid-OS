@@ -5,6 +5,13 @@ Maintainer: Roel Huybrechts <roel.huybrechts@ugent.be>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 
+Package: gyrid-scripts-arduino
+Architecture: all
+Description: Gyrid scripts for Arduino rotating platform support
+ Scripts and configuration for Arduino support. Contains a file
+ mapping serial numbers to device id's and a udev rules file
+ using this data to create persistent device nodes.
+
 Package: gyrid-scripts-core
 Architecture: all
 Description: Gyrid core scripts
@@ -13,23 +20,11 @@ Description: Gyrid core scripts
 Package: gyrid-scripts-net
 Architecture: all
 Depends: dnsmasq (>= 2.62),
- ifplugd (>= 0.28),
- ifmetric (>= 0.3),
- iptables (>= 1.4.14),
- isc-dhcp-client (>= 4.2.2),
- wvdial (>= 1.61)
-Description: Gyrid scripts for network connectivity
- Scripts and configuration that provide network connectivity via
- LAN, WLAN and mobile broadband. Also includes DHCP configuration
- and network routing and sharing.
-
-Package: gyrid-scripts-netmgr
-Architecture: all
-Depends: dnsmasq (>= 2.62),
  network-manager (>= 0.9.4.0),
  iptables (>= 1.4.14),
  uuid-runtime (>= 2.20.1),
  isc-dhcp-client (>= 4.2.2),
+ wireless-tools (>= 30~pre9),
  wvdial (>= 1.61)
 Description: Gyrid scripts for network connectivity
  Scripts and configuration that provide network connectivity via

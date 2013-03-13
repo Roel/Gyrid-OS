@@ -5,8 +5,6 @@ PKG=gyrid-scripts-net
 if [ "$1" = configure ] ; then
         for f in \
             wvdial.conf \
-            default/ifplugd \
-            ifplugd/action.d/ifupdown \
             network/interfaces \
             ppp/resolv.conf \
             ppp/peers/wvdial

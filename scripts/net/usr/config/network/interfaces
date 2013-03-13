@@ -9,6 +9,5 @@ iface eth0 inet static
     address 10.25.83.1
     netmask 255.0.0.0
 
-#eth1 dhcp
-iface eth1 inet dhcp
-    metric 0
+#ppp0 not managed by network-manager
+auto ppp0
