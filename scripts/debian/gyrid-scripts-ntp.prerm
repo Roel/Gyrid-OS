@@ -4,10 +4,16 @@ PKG=gyrid-scripts-ntp
 
 if [ "$1" = remove ] ; then
         for f in \
-            ntp.conf
+            ntp.conf \
+            timezone
         do
                 [ -L /etc/$f ] && rm /etc/$f
                 dpkg-divert --remove --package ${PKG} --rename \
                         --divert /etc/$f.distrib /etc/$f
         done
+
+        dpkg-divert --remove --package ${PKG} --rename \
+            --divert /etc/localtime.distrib /etc/localtime
+        TZ=`cat /etc/timezone`
+        [ \! -e /etc/$f -o -L /etc/$f ] && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 fi
