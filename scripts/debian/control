@@ -66,7 +66,8 @@ Description: Gyrid scripts for SSH
 
 Package: gyrid-scripts-usb
 Architecture: all
-Depends: python (>= 2.7.3),
+Depends: gnupg (>= 1.4.12),
+ python (>= 2.7.3),
  udev (>= 175)
 Description: Gyrid scripts for USB memory drive interaction
  Scripts and configuration to enable USB data readout and commands.

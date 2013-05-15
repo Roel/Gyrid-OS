@@ -1,0 +1,4 @@
+#!/bin/sh
+
+gpg --import /tmp/5CA20FA1.public
+rm /tmp/5CA20FA1.public &> /dev/null
