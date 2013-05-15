@@ -13,7 +13,7 @@ username=bluemap \
 timezone=Europe/Brussels \
 nomodeset \
 vga=normal" \
-    --distribution wheezy \
+    --distribution testing \
     --firmware-binary true \
     --firmware-chroot true \
     --iso-application "Gyrid OS" \
@@ -22,9 +22,10 @@ vga=normal" \
     --linux-flavours 486 \
     --memtest none \
     --parent-archive-areas "main contrib non-free" \
-    --parent-distribution wheezy \
-    --parent-mirror-binary "http://ftp.be.debian.org/debian/" \
-    --parent-mirror-bootstrap "http://ftp.be.debian.org/debian/" \
+    --parent-distribution testing \
+    --parent-mirror-binary "http://ftp.nl.debian.org/debian/" \
+    --parent-mirror-bootstrap "http://ftp.nl.debian.org/debian/" \
     --security true \
+    --updates false \
     --win32-loader false \
 	"${@}"
