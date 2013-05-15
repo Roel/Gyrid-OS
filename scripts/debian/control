@@ -14,6 +14,7 @@ Description: Gyrid scripts for Arduino rotating platform support
 
 Package: gyrid-scripts-core
 Architecture: all
+Depends: whois (>= 5.0.24)
 Description: Gyrid core scripts
  Gyrid core scripts and configuration.
 
@@ -25,6 +26,7 @@ Depends: dnsmasq (>= 2.62),
  uuid-runtime (>= 2.20.1),
  isc-dhcp-client (>= 4.2.2),
  wireless-tools (>= 30~pre9),
+ iw (>= 3.4),
  wvdial (>= 1.61)
 Description: Gyrid scripts for network connectivity
  Scripts and configuration that provide network connectivity via
