@@ -60,7 +60,7 @@ if len(scanfiles) > 0:
 
 if len(rssifiles) > 0:
     output_rssi = open(output + '/rssi.log', 'a')
-    r = re.compile(r'^[0-9]{8}-[0-9]{6}-[A-Za-z]*,[0-9A-Fa-f]{12},-?[0-9]+$')
+    r = re.compile(r'^[0-9]{8}-[0-9]{6}-[A-Za-z]*,[0-9A-Fa-f]{12},[0-9]*,-?[0-9]+$')
 
     for f in glob.glob('rssi*'):
         rssi_lines += unzip(r, f, output_rssi)
