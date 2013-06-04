@@ -10,7 +10,10 @@ if [ "$LAST_CRASH_LINE" != "" ]; then
     if [[ $SINCE_CRASH -le 150 ]]; then
         if [ -f /tmp/mobile-internet-enabled ]; then
             if [ `ifconfig | grep ppp0 | wc -l` -eq 0 ]; then
-                /sbin/reboot
+                if [ `ifconfig | grep -E -C1 (wlan|eth1) | grep inet | wc -l` -lt 1 ]; then
+                    # not connected via WiFi or ethernet
+                    /sbin/reboot
+                fi
             fi
         fi
     fi
