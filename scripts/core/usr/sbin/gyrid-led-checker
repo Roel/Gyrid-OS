@@ -2,10 +2,14 @@
 
 if [ `ps aux | grep 'gyrid-start' | grep -v grep | wc -l` -eq 0 ]; then
     # Gyrid not running
-    echo 0 > /sys/class/leds/alix:3/brightness
+    if [ ! -f /tmp/gyrid-led-disabled ]; then
+        echo 0 > /sys/class/leds/alix:3/brightness
+    fi
 fi
 
 if [ `ps aux | grep 'network_middleware' | grep -v grep | wc -l` -eq 0 ]; then
     # Gyrid network middleware not running
-    echo 0 > /sys/class/leds/alix:2/brightness
+    if [ ! -f /tmp/gyrid-led-disabled ]; then
+        echo 0 > /sys/class/leds/alix:2/brightness
+    fi
 fi
