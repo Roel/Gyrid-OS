@@ -47,6 +47,7 @@ if [ $? != 0 ] ; then exit 1; fi
 
 modprobe leds-alix
 modprobe ledtrig-heartbeat
+touch /tmp/gyrid-led-disabled
 echo heartbeat > /sys/class/leds/alix\:1/trigger
 echo heartbeat > /sys/class/leds/alix\:2/trigger
 echo heartbeat > /sys/class/leds/alix\:3/trigger
