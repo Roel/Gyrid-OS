@@ -1,3 +1,17 @@
+gyrid-scripts (0.2) unstable; urgency=low
+
+  * core
+     - Add gyrid-led-checker to ensure correct LED status.
+  * net
+     - Don't reboot on modem crash when connected otherwise.
+  * ntp
+     - Sync hardware clock every 15 minutes.
+        (Thanks Frederik Van Bossche.)
+  * usb
+     - Unzip WiFi data too.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Tue, 04 Jun 2013 10:16:47 +0200
+
 gyrid-scripts (0.1) unstable; urgency=low
 
   * Initial release.
