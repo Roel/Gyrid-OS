@@ -44,6 +44,7 @@ anglefiles = glob.glob('angle*')
 acpfiles = glob.glob('wifi-ACP*')
 devfiles = glob.glob('wifi-DEV*')
 rawfiles = glob.glob('wifi-RAW*')
+drwfiles = glob.glob('wifi-DRW*')
 
 scan_lines = 0
 rssi_lines = 0
@@ -60,7 +61,7 @@ if len(scanfiles) > 0:
 
 if len(rssifiles) > 0:
     output_rssi = open(output + '/rssi.log', 'a')
-    r = re.compile(r'^[0-9]{8}-[0-9]{6}-[A-Za-z]*,[0-9A-Fa-f]{12},[0-9]*,-?[0-9]+$')
+    r = re.compile(r'^[0-9]{8}-[0-9]{6}-[A-Za-z]*,[0-9A-Fa-f]{12},[0-9]*,-[0-9]+$')
 
     for f in glob.glob('rssi*'):
         rssi_lines += unzip(r, f, output_rssi)
@@ -106,6 +107,15 @@ if len(devfiles) > 0:
 if len(rawfiles) > 0:
     output_inquiry = open(output + '/wifi-raw.log', 'a')
     r = re.compile(r'^[0-9]{8}-[0-9]{6}-[A-Za-z]*,[0-9]{4},(MGMT|CTRL|DATA),.*$')
+
+    for f in glob.glob('wifi-RAW*'):
+        unzip(r, f, output_inquiry)
+
+    output_inquiry.close()
+
+if len(drwfiles) > 0:
+    output_inquiry = open(output + '/wifi-drw.log', 'a')
+    r = re.compile(r'^[0-9]{8}-[0-9]{6}-[A-Za-z]*,[0-9]{4},[0-9A-Fa-f]{12},-[0-9]+$')
 
     for f in glob.glob('wifi-RAW*'):
         unzip(r, f, output_inquiry)
