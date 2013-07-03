@@ -73,9 +73,17 @@ mount -t auto $TARGET_DISK$TARGET_PART $TARGET_MOUNT
 if [ -f $TARGET_MOUNT/etc/hostname ]; then
     cat $TARGET_MOUNT/etc/hostname > /tmp/target-hostname
 else
-    echo voyage > /tmp/target-hostname
+    echo gyrid > /tmp/target-hostname
 fi
 umount $TARGET_MOUNT
+
+THOST=`grep -E '^gyrid-[0-9]{3}$' /tmp/target-hostname`
+while [ "$THOST" == "" ]; do
+    echo -n "Hostname seems incorrect, please enter system hostname: "
+    read THOST
+    THOST=`echo $THOST | grep -E '^gyrid-[0-9]{3}$'`
+done
+echo "$THOST" > /tmp/target-hostname
 
 ########################################################################
 
