@@ -11,3 +11,7 @@ iface eth0 inet static
 
 #ppp0 not managed by network-manager
 auto ppp0
+
+#wlan-s0 used for scanning and therefore
+#disabled for network-manager
+iface wlan-s0 inet manual

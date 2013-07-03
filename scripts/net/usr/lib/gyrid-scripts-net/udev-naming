@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# This script checks whether the given MAC address is blacklisted for Gyrid.
+# If this is the case, the adapter should be used for internet connection and
+# is labeled "wlan0". Otherwise the adapter should be used for scanning and
+# will be labeled "wlan-s0"
+#
+# Please note that this hack only works when there is at most one adapter for
+# internet access and one adapter for scanning.
+
+BLACKLIST_FILE=/etc/gyrid/blacklist.conf
+
+if [ `grep -iE "$1" $BLACKLIST_FILE | wc -l` -eq 0 ]; then
+    # can use for scanning
+    echo "wlan-s0"
+else
+    # should be wlan0
+    echo "wlan0"
+fi
