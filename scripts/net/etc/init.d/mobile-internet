@@ -50,8 +50,12 @@ case "$1" in
         fi
         if [[ -e /dev/ttyUSB3 && ! -f /voyage.install ]]; then
             echo "Restarting mobile internet."
+            touch /tmp/mobile-internet-enabled
             dns
-            wvdial connect &
+            if [ $(echo $(wvdial connect &> /dev/stdout &) | grep "Waiting for carrier" | wc -l) -gt 0 ]; then
+                # Re-enter PIN code when necessary
+                start
+            fi
         fi
         ;;
 esac

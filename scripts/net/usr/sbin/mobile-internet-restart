@@ -21,6 +21,6 @@ fi
 
 if [ `ps aux | grep 'wvdial\|pppd' | grep -v grep | wc -l` -eq 0 ]; then
     if [ -f /tmp/mobile-internet-enabled ]; then
-        service mobile-internet restart
+        service mobile-internet restart &
     fi
 fi
