@@ -1,1 +1,2 @@
 * * * * * root /usr/sbin/gyrid-led-checker &> /dev/null
+* * * * * root /usr/sbin/gyrid-crash-restart &> /dev/null
