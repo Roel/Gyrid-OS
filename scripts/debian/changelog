@@ -1,3 +1,18 @@
+gyrid-scripts (0.4) unstable; urgency=low
+
+  * core
+     - Readd gyrid-crash-restart script.
+  * net
+     - DHCP connection is on eth1, rename NetworkManager connection file as
+        such.
+     - Experimental fixes in mobile-internet scripts.
+  * pxe
+     - Ask for hostname during installation, when it seems to be wrong.
+  * usb
+     - Update regexes to support millisecond timestamps.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Wed, 03 Jul 2013 10:45:54 +0200
+
 gyrid-scripts (0.3) unstable; urgency=low
 
   * arduino
