@@ -1,3 +1,17 @@
+gyrid-scripts (0.3) unstable; urgency=low
+
+  * arduino
+     - Add new Arduino serial numbers.
+  * core
+     - Don't touch LED's when we aren't supposed to.
+  * pxe
+     - Disable Gyrid LED interaction during installation.
+  * usb
+     - Unzip WiFi devraw (DRW) data too.
+     - Update regexes to support all hardware-id's (hashes too).
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Mon, 24 Jun 2013 14:04:30 +0200
+
 gyrid-scripts (0.2) unstable; urgency=low
 
   * core
