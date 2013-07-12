@@ -15,6 +15,19 @@ dns() {
     echo "nameserver 8.8.4.4" >> /etc/resolv.conf
 }
 
+start() {
+    if [[ -e /dev/ttyUSB3 && ! -f /voyage.install ]]; then
+        echo "Starting mobile internet."
+        touch /tmp/mobile-internet-enabled
+        dns
+        wvdial &
+        sleep 2
+        wvdial on &
+        sleep 2
+        wvdial connect &
+    fi
+}
+
 stop() {
     if [ `ps aux | grep 'wvdial\|pppd' | grep -v grep | wc -l` -gt 0 ]; then
         echo "Stopping mobile internet."
@@ -29,16 +42,7 @@ stop() {
 
 case "$1" in
     start)
-        if [[ -e /dev/ttyUSB3 && ! -f /voyage.install ]]; then
-            echo "Starting mobile internet."
-            touch /tmp/mobile-internet-enabled
-            dns
-            wvdial &
-            sleep 2
-            wvdial on &
-            sleep 2
-            wvdial connect &
-        fi
+        start
         ;;
     stop)
         stop
