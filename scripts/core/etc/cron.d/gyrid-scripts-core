@@ -1,2 +1,5 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
 * * * * * root /usr/sbin/gyrid-led-checker &> /dev/null
 * * * * * root /usr/sbin/gyrid-crash-restart &> /dev/null

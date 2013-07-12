@@ -1,2 +1,5 @@
-# Call the NTP restart script every 5 minutes (only restart if necessary)
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Call the mobile internet restart script every 5 minutes (only restart if necessary)
 */5 * * * * root /usr/sbin/mobile-internet-restart &> /dev/null
