@@ -1,3 +1,11 @@
+gyrid-scripts (0.5) unstable; urgency=low
+
+  * net
+     - Differentiate wlan naming between devices used for scanning
+        and internet access.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Wed, 03 Jul 2013 14:26:39 +0200
+
 gyrid-scripts (0.4) unstable; urgency=low
 
   * core
