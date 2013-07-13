@@ -7,7 +7,8 @@ Standards-Version: 3.9.3
 
 Package: gyrid-scripts-apt
 Architecture: all
-Pre-Depends: cron-apt (>= 0.9.2)
+Depends: cron-apt (>= 0.9.2)
+Replaces: cron-apt
 Description: Gyrid APT configuration
  Scripts and configuration for APT. Contains apt-cron configuration
  for autoupdates.
