@@ -1,2 +1,0 @@
-autoclean -y
-dist-upgrade -y -o APT::Get::Show-Upgraded=true Dir::Etc::SourceList=/etc/apt/sources.list.d/bluemap-updates.list
