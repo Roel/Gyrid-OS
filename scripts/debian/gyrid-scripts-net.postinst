@@ -19,3 +19,9 @@ sed -i -e "/dnsmasq.more.conf/{s/^#//}" /etc/dnsmasq.conf
 
 update-rc.d mobile-internet defaults 96 02
 update-rc.d ip-routing defaults 97 02
+
+if which invoke-rc.d >/dev/null 2>&1; then
+    invoke-rc.d cron force-reload
+else
+    /etc/init.d/cron force-reload
+fi

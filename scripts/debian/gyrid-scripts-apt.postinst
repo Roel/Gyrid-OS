@@ -1,9 +1,5 @@
 #!/bin/sh
 
-PKG=gyrid-scripts-net
-
-update-rc.d gyrid-os defaults 99 01
-
 if which invoke-rc.d >/dev/null 2>&1; then
     invoke-rc.d cron force-reload
 else
