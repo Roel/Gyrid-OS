@@ -1,3 +1,16 @@
+gyrid-scripts (0.6) unstable; urgency=low
+
+  * arduino, core, net, ntp, ssh, usb
+     - Reload cron and udev in postinstall script.
+  * core, net, ntp, ssh
+     - Add SHELL and PATH variables to cron.d files.
+  * apt
+     - Add gyrid-scripts-apt package with autoupdate configuration.
+  * net
+     - Fix mobile-internet init script.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Sat, 13 Jul 2013 11:34:03 +0200
+
 gyrid-scripts (0.5) unstable; urgency=low
 
   * net
