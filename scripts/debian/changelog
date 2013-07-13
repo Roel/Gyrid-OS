@@ -1,3 +1,10 @@
+gyrid-scripts (0.7) unstable; urgency=low
+
+  * net
+     - Depend on network-manager-vpnc.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Sat, 13 Jul 2013 14:39:00 +0200
+
 gyrid-scripts (0.6) unstable; urgency=low
 
   * arduino, core, net, ntp, ssh, usb
