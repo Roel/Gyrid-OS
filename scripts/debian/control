@@ -30,6 +30,7 @@ Package: gyrid-scripts-net
 Architecture: all
 Depends: dnsmasq (>= 2.62),
  network-manager (>= 0.9.4.0),
+ network-manager-vpnc (>= 0.9.4.0),
  iptables (>= 1.4.14),
  uuid-runtime (>= 2.20.1),
  isc-dhcp-client (>= 4.2.2),
