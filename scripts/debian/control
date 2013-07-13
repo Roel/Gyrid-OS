@@ -5,6 +5,13 @@ Maintainer: Roel Huybrechts <roel.huybrechts@ugent.be>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 
+Package: gyrid-scripts-apt
+Architecture: all
+Pre-Depends: cron-apt (>= 0.9.2)
+Description: Gyrid APT configuration
+ Scripts and configuration for APT. Contains apt-cron configuration
+ for autoupdates.
+
 Package: gyrid-scripts-arduino
 Architecture: all
 Description: Gyrid scripts for Arduino rotating platform support

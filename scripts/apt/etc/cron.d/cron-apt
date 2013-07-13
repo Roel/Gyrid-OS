@@ -1,0 +1,5 @@
+#
+# Regular cron jobs for the cron-apt package
+#
+# Every hour.
+0 *	* * *	root	test -x /usr/sbin/cron-apt && /usr/sbin/cron-apt

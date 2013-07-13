@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PKG=gyrid-scripts-apt
+
+rm -f /etc/cron.d/cron-apt
+rm -f /etc/cron-apt/action.d/*
