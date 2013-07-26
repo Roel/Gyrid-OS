@@ -1,3 +1,13 @@
+gyrid-scripts (0.8) unstable; urgency=low
+
+  * apt
+     - Disable autoupdating of Debian repositories.
+     - Remove preinstall script, it removes too much.
+  * net
+     - Restart ip-routing and mobile-internet in postinstall script.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Sat, 13 Jul 2013 18:13:39 +0200
+
 gyrid-scripts (0.7) unstable; urgency=low
 
   * net
