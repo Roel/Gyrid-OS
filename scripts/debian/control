@@ -22,7 +22,9 @@ Description: Gyrid scripts for Arduino rotating platform support
 
 Package: gyrid-scripts-core
 Architecture: all
-Depends: whois (>= 5.0.24)
+Depends: bluez (>= 4.99),
+ python (>= 2.7.3),
+ whois (>= 5.0.24)
 Description: Gyrid core scripts
  Gyrid core scripts and configuration.
 

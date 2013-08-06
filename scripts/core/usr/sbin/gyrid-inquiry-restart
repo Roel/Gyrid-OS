@@ -1,0 +1,25 @@
+#!/bin/bash
+
+reboot=0
+
+for MAC in `hcitool dev | grep hci | awk '{ print $2 }' | sed 's/://g'`
+do
+    if [ -f /var/log/gyrid/$MAC/inquiry.log ]; then
+        lastinquiry=`tail -n1 /var/log/gyrid/$MAC/inquiry.log | cut -c 1-15`
+        ulastinquiry=`python -c 'import time; import sys; t=time.strptime(sys.argv[1], "%Y%m%d-%H%M%S"); print time.strftime("%s", t)' $lastinquiry`
+
+        now=`date +%s`
+        sincelastinquiry=$(expr $now - $ulastinquiry)
+        echo $sincelastinquiry
+        if [ $sincelastinquiry -gt 80 ]; then
+            reboot=1
+        fi
+    fi
+done
+
+if [ `cat /proc/uptime | awk -F. '{ print $1 }'` -gt 120 ]; then
+    if [ $reboot -gt 0 ]; then
+        echo `date`: Auto reboot due to lack of recent Bluetooth inquiry. >> /var/log/gyrid/reboot.log
+        reboot
+    fi
+fi
