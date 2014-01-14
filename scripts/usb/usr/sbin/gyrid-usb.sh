@@ -102,9 +102,6 @@ temporary_usb() {
         export DATAPATH=$MOUNTPOINT/$DATADIR
         mkdir $DATAPATH
 
-        #Write device uptime to meta.txt
-        echo -ne "Uptime:\n`uptime`\n\n" >> $DATAPATH/meta.txt
-
         #Copy over the logs.
         mkdir -p $DATAPATH/original_logs
         mkdir -p $DATAPATH/original_logs/gyrid
@@ -118,44 +115,18 @@ temporary_usb() {
             mkdir -p $DATAPATH/merged_logs/$i
             cd $DATAPATH/original_logs/gyrid/$i
 
-                lines=`/usr/sbin/gyrid-unzip.py $DATAPATH/merged_logs/$i`
+                /usr/sbin/gyrid-unzip.py $DATAPATH/merged_logs/$i
 
                 cd $DATAPATH/merged_logs/$i
-                    if [ -f scan.log ]; then
-                        sort -T $MOUNTPOINT scan.log -o scan.log
-                        lines_scan=`echo $lines | awk '{print $1}'`
-                        uniq_macs=`echo $lines | awk '{print $3}'`
-                        mv scan.log ../`hostname`-$i-scan.log
-                    else
-                        lines_scan=0
-                        uniq_macs=0
-                    fi
-
-                    if [ -f rssi.log ]; then
-                        sort -T $MOUNTPOINT rssi.log -o rssi.log
-                        lines_rssi=`echo $lines | awk '{print $2}'`
-                        mv rssi.log ../`hostname`-$i-rssi.log
-                    else
-                        lines_rssi=0
-                    fi
-
-                    if [ -f inquiry.log ]; then
-                        sort -T $MOUNTPOINT inquiry.log -o inquiry.log
-                        mv inquiry.log ../`hostname`-$i-inquiry.log
-                    fi
-
-                    if [ -f angle.log ]; then
-                        sort -T $MOUNTPOINT angle.log -o angle.log
-                        mv angle.log ../`hostname`-$i-angle.log
-                    fi
+                
+                    for l in "bt-scan" "bt-rssi" "bt-inquiry" "wifi-acp" "wifi-dev" "wifi-drw" "wifi-raw" "wifi-freq"; do
+                        if [ -f "${l}.log" ]; then
+                            sort -T $MOUNTPOINT ${l}.log -o ${l}.log
+                            mv ${l}.log ../`hostname`-$i-${l}.log
+                        fi
+                    done
 
             rm -r $DATAPATH/merged_logs/$i
-
-            #Write useful statistics to meta.txt
-            echo -ne "Sensor $i:\n" >> $DATAPATH/meta.txt
-            echo -ne "  Number of loglines in scan.log: $lines_scan\n" >> $DATAPATH/meta.txt
-            echo -ne "  Number of loglines in rssi.log: $lines_rssi\n" >> $DATAPATH/meta.txt
-            echo -ne "  Number of unique MAC-addresses: $uniq_macs\n\n" >> $DATAPATH/meta.txt
         done
 
         #Write package versions to packages.txt
