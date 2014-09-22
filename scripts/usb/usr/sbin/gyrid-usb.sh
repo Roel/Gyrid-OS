@@ -121,6 +121,7 @@ temporary_usb() {
                 
                     for l in "bt-scan" "bt-rssi" "bt-inquiry" "wifi-acp" "wifi-dev" "wifi-drw" "wifi-raw" "wifi-freq"; do
                         if [ -f "${l}.log" ]; then
+                            echo "Sorting ${l}.log"
                             sort -T $MOUNTPOINT ${l}.log -o ${l}.log
                             mv ${l}.log ../`hostname`-$i-${l}.log
                         fi
