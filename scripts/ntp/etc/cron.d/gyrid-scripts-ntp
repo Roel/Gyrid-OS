@@ -1,0 +1,11 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Call the NTP restart script every 15 minutes (only restart if necessary)
+3,18,33,48 * * * * root /usr/sbin/ntp-restart &> /dev/null
+
+# Sync the hardware clock every 15 minutes
+8,23,38,53 * * * * root service hwclock.sh reload &> /dev/null
+
+# Set the time based on HTTP request (useful if NTP ports are blocked in firewall)
+#* * * * * root /usr/sbin/date-from-http-request &> /dev/null

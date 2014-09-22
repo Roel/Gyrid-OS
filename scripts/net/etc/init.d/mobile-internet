@@ -1,0 +1,65 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          mobile-internet
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop mobile internet connection
+### END INIT INFO-
+
+dns() {
+    echo "nameserver 208.67.222.222" > /etc/resolv.conf
+    echo "nameserver 208.67.220.220" >> /etc/resolv.conf
+    echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+    echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+}
+
+start() {
+    if [[ -e /dev/ttyUSB3 && ! -f /voyage.install ]]; then
+        echo "Starting mobile internet."
+        touch /tmp/mobile-internet-enabled
+        dns
+        wvdial &
+        sleep 2
+        wvdial on &
+        sleep 2
+        wvdial connect &
+    fi
+}
+
+stop() {
+    if [ `ps aux | grep 'wvdial\|pppd' | grep -v grep | wc -l` -gt 0 ]; then
+        echo "Stopping mobile internet."
+        if [ -f /tmp/mobile-internet-enabled ]; then
+            rm /tmp/mobile-internet-enabled
+        fi
+        for i in `ps aux | grep 'wvdial\|pppd' | grep -v grep | awk '{print $2}'`; do
+            kill $i
+        done
+    fi
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        if [ `ps aux | grep 'wvdial\|pppd' | grep -v grep | wc -l` -gt 0 ]; then
+            stop
+            sleep 4
+        fi
+        if [[ -e /dev/ttyUSB3 && ! -f /voyage.install ]]; then
+            echo "Restarting mobile internet."
+            touch /tmp/mobile-internet-enabled
+            dns
+            if [ $(echo $(wvdial connect &> /dev/stdout &) | grep "Waiting for carrier" | wc -l) -gt 0 ]; then
+                # Re-enter PIN code when necessary
+                start
+            fi
+        fi
+        ;;
+esac

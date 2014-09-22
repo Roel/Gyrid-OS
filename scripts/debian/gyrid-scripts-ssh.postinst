@@ -1,0 +1,21 @@
+#!/bin/sh
+
+PKG=gyrid-scripts-ssh
+
+if [ "$1" = configure ] ; then
+        for f in \
+            ssh/sshd_config
+        do
+            dpkg-divert --add --package ${PKG} --rename \
+                    --divert /etc/$f.distrib /etc/$f
+            [ \! -e /etc/$f -o -L /etc/$f ] && ln -sf /usr/config/$f /etc/$f
+        done
+fi
+
+update-rc.d ssh-phone-home defaults 97 02
+
+if which invoke-rc.d >/dev/null 2>&1; then
+    invoke-rc.d cron force-reload
+else
+    /etc/init.d/cron force-reload
+fi

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+LAST_CRASH_LINE=`grep -aE "sierra(.*)failed" /var/log/syslog | tail -n 1 | awk '{ print $1,$2,$3 }'`
+
+if [ "$LAST_CRASH_LINE" != "" ]; then
+    LAST_CRASHED=`date --date="$(grep -aE "sierra(.*)failed" /var/log/syslog | tail -n 1 | awk '{ print $1,$2,$3 }')" "+%s"`
+    NOW=`date "+%s"`
+    SINCE_CRASH=$(expr $NOW - $LAST_CRASHED)
+
+    if [[ $SINCE_CRASH -le 150 ]]; then
+        if [ -f /tmp/mobile-internet-enabled ]; then
+            if [ `ifconfig | grep ppp0 | wc -l` -eq 0 ]; then
+                if [ `ifconfig | grep -E -C1 (wlan|eth1) | grep inet | wc -l` -lt 1 ]; then
+                    # not connected via WiFi or ethernet
+                    /sbin/reboot
+                fi
+            fi
+        fi
+    fi
+fi
+
+if [ `ps aux | grep 'wvdial\|pppd' | grep -v grep | wc -l` -eq 0 ]; then
+    if [ -f /tmp/mobile-internet-enabled ]; then
+        service mobile-internet restart &
+    fi
+fi

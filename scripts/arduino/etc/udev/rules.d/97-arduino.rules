@@ -1,0 +1,1 @@
+KERNEL=="ttyACM*", ATTRS{manufacturer}=="Arduino*", PROGRAM="/usr/lib/gyrid-scripts-arduino/arduino-number $attr{serial}", SYMLINK+="arduino%c"

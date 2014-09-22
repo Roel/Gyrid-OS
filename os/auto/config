@@ -1,0 +1,31 @@
+#!/bin/sh
+
+lb config noauto \
+    --apt-indices none \
+    --apt-recommends false \
+    --apt-source-archives false \
+    --architectures i386 \
+    --archive-areas "main contrib non-free" \
+    --backports false \
+    --bootappend-live \
+"hostname=gyrid-os \
+username=bluemap \
+timezone=Europe/Brussels \
+nomodeset \
+vga=normal" \
+    --distribution testing \
+    --firmware-binary true \
+    --firmware-chroot true \
+    --iso-application "Gyrid OS" \
+    --iso-publisher "UGent, Department of Geography, Carto-GIS; http://cartogis.ugent.be/" \
+    --iso-volume "Gyrid OS" \
+    --linux-flavours 486 \
+    --memtest none \
+    --parent-archive-areas "main contrib non-free" \
+    --parent-distribution testing \
+    --parent-mirror-binary "http://ftp.be.debian.org/debian/" \
+    --parent-mirror-bootstrap "http://ftp.be.debian.org/debian/" \
+    --security true \
+    --updates false \
+    --win32-loader false \
+	"${@}"

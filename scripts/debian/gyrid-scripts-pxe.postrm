@@ -1,0 +1,11 @@
+#!/bin/sh
+
+PKG=gyrid-scripts-pxe
+
+if [ "$1" = remove ] ; then
+	# Deconfigure syslinux and tftpboot
+	rm /tftpboot/pxelinux.0
+	rm /tftpboot/linux
+	rm /tftpboot/initrd.img
+	rmdir /tftpboot
+fi

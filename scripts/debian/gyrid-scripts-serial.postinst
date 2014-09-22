@@ -1,0 +1,9 @@
+#!/bin/sh
+
+PKG=gyrid-scripts-serial
+
+sed -i -e "s/^#T0:/T0:/" /etc/inittab
+
+if [ -f /run/initctl ]; then
+    telinit q
+fi

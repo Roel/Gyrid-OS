@@ -1,0 +1,6 @@
+#
+# Regular cron jobs for the cron-apt package
+#
+0 *	* * *	root	test -x /usr/sbin/cron-apt && /usr/sbin/cron-apt /etc/cron-apt/bluemap.conf
+#0 4	* * *	root	test -x /usr/sbin/cron-apt && /usr/sbin/cron-apt /etc/cron-apt/debian.conf
+

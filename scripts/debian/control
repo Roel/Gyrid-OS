@@ -1,0 +1,86 @@
+Source: gyrid-scripts
+Section: admin
+Priority: extra
+Maintainer: Roel Huybrechts <roel.huybrechts@ugent.be>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+
+Package: gyrid-scripts-apt
+Architecture: all
+Depends: cron-apt (>= 0.9.2)
+Replaces: cron-apt
+Description: Gyrid APT configuration
+ Scripts and configuration for APT. Contains apt-cron configuration
+ for autoupdates.
+
+Package: gyrid-scripts-arduino
+Architecture: all
+Description: Gyrid scripts for Arduino rotating platform support
+ Scripts and configuration for Arduino support. Contains a file
+ mapping serial numbers to device id's and a udev rules file
+ using this data to create persistent device nodes.
+
+Package: gyrid-scripts-core
+Architecture: all
+Depends: bluez (>= 4.99),
+ python (>= 2.7.3),
+ whois (>= 5.0.24)
+Description: Gyrid core scripts
+ Gyrid core scripts and configuration.
+
+Package: gyrid-scripts-net
+Architecture: all
+Depends: dnsmasq (>= 2.62),
+ network-manager (>= 0.9.4.0),
+ network-manager-vpnc (>= 0.9.4.0),
+ iptables (>= 1.4.14),
+ uuid-runtime (>= 2.20.1),
+ isc-dhcp-client (>= 4.2.2),
+ wireless-tools (>= 30~pre9),
+ iw (>= 3.4),
+ wvdial (>= 1.61)
+Description: Gyrid scripts for network connectivity
+ Scripts and configuration that provide network connectivity via
+ LAN, WLAN and mobile broadband. Also includes DHCP configuration
+ and network routing and sharing.
+
+Package: gyrid-scripts-ntp
+Architecture: all
+Depends: ntp (>= 1:4.2.6)
+Description: Gyrid scripts for accurate timekeeping
+ Scripts and configuration to ensure an accurate clock at all times.
+
+Package: gyrid-scripts-pxe
+Architecture: all
+Depends: atftpd (>= 0.7),
+ dnsmasq (>= 2.55),
+ grub-legacy (>= 0.97),
+ ifupdown (>= 0.6.10),
+ net-tools (>= 1.60),
+ nfs-kernel-server (>= 1:1.2.2),
+ rsync (>= 3.0.9),
+ syslinux-common (>= 2:4.02)
+Description: Gyrid scripts for PXE netinstall
+ Scripts and configuration to perform network installation via PXE boot.
+
+Package: gyrid-scripts-serial
+Architecture: all
+Description: Gyrid scripts for setting up a serial console
+ Scripts and configuration to enable a serial console.
+
+Package: gyrid-scripts-ssh
+Architecture: all
+Depends: autossh (>= 1.4c),
+ openssh-client (>= 1:6.0p1),
+ openssh-server (>= 1:6.0p1)
+Description: Gyrid scripts for SSH
+ Scripts and configuration to enable SSH connections to the device,
+ both local and reverse via the server.
+
+Package: gyrid-scripts-usb
+Architecture: all
+Depends: gnupg (>= 1.4.12),
+ python (>= 2.7.3),
+ udev (>= 175)
+Description: Gyrid scripts for USB memory drive interaction
+ Scripts and configuration to enable USB data readout and commands.

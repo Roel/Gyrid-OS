@@ -1,0 +1,13 @@
+[connection]
+id=ethernet
+uuid=98eaa909-fd06-484e-b5d9-115ea48c8f70
+type=802-3-ethernet
+
+[802-3-ethernet]
+duplex=full
+
+[ipv4]
+method=auto
+
+[ipv6]
+method=auto

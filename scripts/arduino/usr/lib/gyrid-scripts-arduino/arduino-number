@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/bin/grep ",$1" /usr/share/gyrid-scripts-arduino/serial-numbers.txt | /usr/bin/awk -F, '{ print $1 }'

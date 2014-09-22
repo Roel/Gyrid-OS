@@ -1,0 +1,87 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provides:          netinstall-pxe
+# Required-Start:    $all
+# Required-Stop:
+# Should-Start:
+# Should-Stop:
+# Default-Start:
+# Default-Stop:
+# Short-Description: Netinstall PXE start/stop script
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+NAME=netinstall-pxe
+DESC=netinstall-pxe
+
+set -e
+
+PXEDEFAULT=/tftpboot/pxelinux.cfg/default
+INITTAB=/etc/inittab
+case $1 in
+	'start')
+		SERIAL=$2
+		if [ ! -z $SERIAL ] ; then
+		
+			if [ "$SERIAL" == "0" ] ; then
+				echo -n "Setting console display... "
+				if [ ! -f $PXEDEFAULT.pxe ] ; then cp $PXEDEFAULT $PXEDEFAULT.pxe ; fi
+				sed -i -e "s/console 0/console 1/" $PXEDEFAULT 
+				sed -i -e "/^serial/ D" $PXEDEFAULT 
+				sed -i -e "s/ console.*$//" $PXEDEFAULT 
+				echo "Done."
+			else
+				echo -n "Setting serial $SERIAL to $INITTAB ... "
+				if [ ! -f $INITTAB.pxe ] ; then cp $INITTAB $INITTAB.pxe ; fi
+				sed -i -e "s/9600/${SERIAL}/" $INITTAB 
+				echo "Done."
+				
+				echo -n "Setting serial $SERIAL to $PXEDEFAULT ... "
+				if [ ! -f $PXEDEFAULT.pxe ] ; then cp $PXEDEFAULT $PXEDEFAULT.pxe ; fi
+				sed -i -e "s/9600/${SERIAL}/" $PXEDEFAULT 
+				echo "Done."
+			fi
+		else
+			echo "No serial setting is supplied, using 9600"
+		fi
+		
+		echo -n "Setting up eth0 to 192.168.1.1 ... "
+		ifdown eth0
+		ifconfig eth0 192.168.1.1 netmask 255.255.255.0 up
+		echo "OK."
+		
+		rm -f /tftpboot/linux /tftpboot/initrd.img
+		cp /vmlinuz /tftpboot/linux
+		cp /initrd.img /tftpboot/initrd.img
+
+		/etc/init.d/nfs-kernel-server restart
+		/etc/init.d/atftpd restart
+		;;
+	'stop')
+		/etc/init.d/nfs-kernel-server stop
+		/etc/init.d/atftpd stop
+		
+		echo -n "Restoring eth0 ... "
+		ifconfig eth0 down	
+		ifup eth0		
+		echo "Done."
+		
+		echo -n "Restoring $INITTAB ... "
+		if [ -f $INITTAB.pxe ] ; then 
+			mv $INITTAB.pxe $INITTAB
+		fi
+		echo "Done."
+		
+		echo -n "Restoring $PXEDEFAULT ... "
+		if [ -f $PXEDEFAULT.pxe ] ; then 
+			mv $PXEDEFAULT.pxe $PXEDEFAULT
+		fi
+		echo "Done."
+		;;
+	*)
+		echo "Usage: `basename $0` {start <serial rate>|stop}"
+		exit 1
+	    ;;
+esac
+
+exit 0

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+PKG=gyrid-scripts-ssh
+
+if [ "$1" = remove ] ; then
+        for f in \
+            ssh/sshd_config
+        do
+                [ -L /etc/$f ] && rm /etc/$f
+                dpkg-divert --remove --package ${PKG} --rename \
+                        --divert /etc/$f.distrib /etc/$f
+        done
+fi
+
+if which invoke-rc.d >/dev/null 2>&1; then
+    invoke-rc.d ssh-phone-home stop
+else
+    /etc/init.d/ssh-phone-home stop
+fi

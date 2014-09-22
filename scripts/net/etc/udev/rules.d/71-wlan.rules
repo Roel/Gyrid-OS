@@ -1,0 +1,1 @@
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="wlan*", PROGRAM="/usr/lib/gyrid-scripts-net/wlan-naming $attr{address}", NAME="%c"

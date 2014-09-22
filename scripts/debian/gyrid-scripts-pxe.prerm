@@ -1,0 +1,17 @@
+#!/bin/sh
+
+PKG=gyrid-scripts-pxe
+
+if [ "$1" = remove ] ; then
+        for f in \
+            default/atftpd \
+            exports
+        do
+                [ -L /etc/$f ] && rm /etc/$f
+                dpkg-divert --remove --package ${PKG} --rename \
+                        --divert /etc/$f.distrib /etc/$f
+        done
+fi
+
+update-rc.d atftpd defaults
+update-rc.d nfs-kernel-server defaults

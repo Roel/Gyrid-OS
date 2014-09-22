@@ -1,0 +1,99 @@
+gyrid-scripts (0.9) unstable; urgency=low
+
+  * arduino
+     - Make udev helper script executable.
+  * core
+     - Add inquiry-based Gyrid reboot script.
+  * ntp
+     - Add script to set time based on HTTP request.
+  * usb
+     - Update USB data readout script to include merged WiFi data.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Tue, 14 Jan 2014 14:42:13 +0100
+
+gyrid-scripts (0.8) unstable; urgency=low
+
+  * apt
+     - Disable autoupdating of Debian repositories.
+     - Remove preinstall script, it removes too much.
+  * net
+     - Restart ip-routing and mobile-internet in postinstall script.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Sat, 13 Jul 2013 18:13:39 +0200
+
+gyrid-scripts (0.7) unstable; urgency=low
+
+  * net
+     - Depend on network-manager-vpnc.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Sat, 13 Jul 2013 14:39:00 +0200
+
+gyrid-scripts (0.6) unstable; urgency=low
+
+  * arduino, core, net, ntp, ssh, usb
+     - Reload cron and udev in postinstall script.
+  * core, net, ntp, ssh
+     - Add SHELL and PATH variables to cron.d files.
+  * apt
+     - Add gyrid-scripts-apt package with autoupdate configuration.
+  * net
+     - Fix mobile-internet init script.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Sat, 13 Jul 2013 11:34:03 +0200
+
+gyrid-scripts (0.5) unstable; urgency=low
+
+  * net
+     - Differentiate wlan naming between devices used for scanning
+        and internet access.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Wed, 03 Jul 2013 14:26:39 +0200
+
+gyrid-scripts (0.4) unstable; urgency=low
+
+  * core
+     - Readd gyrid-crash-restart script.
+  * net
+     - DHCP connection is on eth1, rename NetworkManager connection file as
+        such.
+     - Experimental fixes in mobile-internet scripts.
+  * pxe
+     - Ask for hostname during installation, when it seems to be wrong.
+  * usb
+     - Update regexes to support millisecond timestamps.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Wed, 03 Jul 2013 10:45:54 +0200
+
+gyrid-scripts (0.3) unstable; urgency=low
+
+  * arduino
+     - Add new Arduino serial numbers.
+  * core
+     - Don't touch LED's when we aren't supposed to.
+  * pxe
+     - Disable Gyrid LED interaction during installation.
+  * usb
+     - Unzip WiFi devraw (DRW) data too.
+     - Update regexes to support all hardware-id's (hashes too).
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Mon, 24 Jun 2013 14:04:30 +0200
+
+gyrid-scripts (0.2) unstable; urgency=low
+
+  * core
+     - Add gyrid-led-checker to ensure correct LED status.
+  * net
+     - Don't reboot on modem crash when connected otherwise.
+  * ntp
+     - Sync hardware clock every 15 minutes.
+        (Thanks Frederik Van Bossche.)
+  * usb
+     - Unzip WiFi data too.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Tue, 04 Jun 2013 10:16:47 +0200
+
+gyrid-scripts (0.1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Thu, 04 Oct 2012 10:51:40 +0200
