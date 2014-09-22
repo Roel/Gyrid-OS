@@ -23,8 +23,8 @@ vga=normal" \
     --memtest none \
     --parent-archive-areas "main contrib non-free" \
     --parent-distribution testing \
-    --parent-mirror-binary "http://ftp.nl.debian.org/debian/" \
-    --parent-mirror-bootstrap "http://ftp.nl.debian.org/debian/" \
+    --parent-mirror-binary "http://ftp.be.debian.org/debian/" \
+    --parent-mirror-bootstrap "http://ftp.be.debian.org/debian/" \
     --security true \
     --updates false \
     --win32-loader false \
