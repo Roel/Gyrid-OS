@@ -1,3 +1,16 @@
+gyrid-scripts (0.9) unstable; urgency=low
+
+  * arduino
+     - Make udev helper script executable.
+  * core
+     - Add inquiry-based Gyrid reboot script.
+  * ntp
+     - Add script to set time based on HTTP request.
+  * usb
+     - Update USB data readout script to include merged WiFi data.
+
+ -- Roel Huybrechts <roel.huybrechts@ugent.be>  Tue, 14 Jan 2014 14:42:13 +0100
+
 gyrid-scripts (0.8) unstable; urgency=low
 
   * apt
